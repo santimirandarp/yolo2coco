@@ -1,0 +1,50 @@
+{
+  "name": "yolo2coco",
+  "version": "0.0.0",
+  "description": "Basic yolo to coco conversion",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "keywords": [],
+  "author": "Santi Miranda",
+  "license": "MIT",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf lib",
+    "eslint": "eslint src --cache",
+    "eslint-fix": "npm run eslint -- --fix",
+    "prepack": "npm run tsc",
+    "prettier": "prettier --check src",
+    "prettier-write": "prettier --write src",
+    "test": "npm run test-only && npm run eslint && npm run prettier && npm run check-types",
+    "test-only": "vitest run --coverage",
+    "tsc": "npm run clean && npm run tsc-cjs",
+    "tsc-cjs": "tsc --project tsconfig.cjs.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo/yolo2coco.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cheminfo/yolo2coco/issues"
+  },
+  "homepage": "https://github.com/cheminfo/yolo2coco#readme",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.21.2",
+    "@babel/preset-typescript": "^7.21.4",
+    "@types/jest": "^29.5.1",
+    "@vitest/coverage-c8": "^0.31.0",
+    "eslint": "^8.40.0",
+    "eslint-config-cheminfo-typescript": "^11.3.1",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4",
+    "vitest": "^0.31.0"
+  },
+  "dependencies": {
+    "image-size": "^1.0.2"
+  }
+}
