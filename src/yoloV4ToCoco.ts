@@ -31,12 +31,12 @@ export function yoloV4ToCoco(
     coco.images.push(imgField);
 
     for (const annotation of annotations) {
-      
-      const [x1, y1, x2, y2, category] = annotation.split(',').map(Number.parseFloat);
+      const [x1, y1, x2, y2, rawCategory] = annotation.split(',').map(Number.parseFloat);
       const w= x2 - x1;
       const h= y2 - y1;
-
-      const annotationField = defaultAnnotationField(i, category, nOfAnnots);
+      
+      const category = rawCategory + 1;
+      const annotationField = defaultAnnotationField(i,category , nOfAnnots);
       annotationField.bbox = [x1, y1, w, h];
       annotationField.area = w*h;
       coco.annotations.push(annotationField);
