@@ -5,12 +5,17 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-The goal is to make some basic data handling easier for the manipulation of bounding box labels.
+Basic Yolo-to-Coco conversion tool.
 
-Especially Yolo formats are normally quite easy to merge, but then many model tools expect 
-Coco format. 
+Currently it converts the YOLO v4,v5,v6,v7 and v8.
 
-This is a Basic Yolo-to-Coco conversion tool.
+The converters expect either:
+* a path to the main directory (v4) 
+* or a path to the `data.yaml` (v5-8) file.
+
+They return an object with the keys `{ valid, train, test }` (v4) or `{ val, train, test }` (v5-8) with the Coco format.
+
+You can then use `fs.writeFileSync("name.json", JSON.stringify(key))` to save the files.
 
 ## Installation
 
@@ -19,16 +24,11 @@ This is a Basic Yolo-to-Coco conversion tool.
 ## Usage
 
 ```typescript
-import { yoloV4ToCoco } from 'yolo2coco';
-import { join } from 'path';
+import { yoloV4ToCoco, /* etc */ } from 'yolo2coco';
 
-// path to the **folder** with the _annotations.txt and _classes.txt files.
-const yoloFolder = join(__dirname,'./train/')
+const {valid, train, test} = yoloV4ToCoco("./path/to/folder")
 
-const cocoJSON = yoloV4ToCoco(yoloFolder)
-/* write out if you need
- * `writeFileSync('coco.json', JSON.stringify(coco))`
- */
+// const {val, train, test} = yoloV5ToCoco("./path/to/data.yaml")
 
 ```
 

@@ -4,11 +4,9 @@ import { yoloV4ToCoco } from '../yoloV4/yoloV4ToCoco';
 import { join } from 'node:path';
 
 describe('yolo2coco', () => {
-  const result = yoloV4ToCoco(
-    join(__dirname, 'data/yolov4Pytorch/valid'),
-    false,
-  );
-  const jsonResult = JSON.parse(result) as CocoDatasetFormat;
+  const jsonResult = yoloV4ToCoco(
+    join(__dirname, 'data/yolov4Pytorch'),
+  ).valid
   const cocoTrue = JSON.parse(
     readFileSync(
       join(__dirname, 'data/coco/valid/_annotations.coco.json'),
@@ -16,7 +14,7 @@ describe('yolo2coco', () => {
     ),
   ) as CocoDatasetFormat;
   test('should return value', () => {
-    expect(result).toBeDefined();
+    expect(jsonResult).toBeDefined();
   });
   test('Number of keys, images, and annotations', () => {
     expect(Object.keys(jsonResult)).toHaveLength(Object.keys(cocoTrue).length);

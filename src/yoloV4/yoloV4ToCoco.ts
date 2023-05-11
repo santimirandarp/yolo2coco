@@ -1,56 +1,67 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import sizeOf from 'image-size';
-import {cocoDatasetFormat} from '../coco_default';
-import { appendClassesToCoco,existOrThrow,defaultAnnotationField, imageField } from '../coco_utils';
+import { type CocoDatasetFormat, cocoDatasetFormat } from '../coco_default';
+import {
+  appendClassesToCoco,
+  existOrThrow,
+  defaultAnnotationField,
+  imageField,
+} from '../coco_utils';
 
 /**
  * Converts a yoloV4 dataset to a coco dataset
- * @param inputFile - path to the yoloV4 annotations file
- * @param compressed - if true, the output json will be minified, otherwise it will be pretty printed
+ * @param baseDir - path to the directory containing the train, valid, and test directories
+ * * If you have different ones just rename it 
+ * * If some are missing that is fine.
  */
-export function yoloV4ToCoco(
-  inputDir = './train/',
-  compressed=true
-) {
-   
-  inputDir = resolve(__dirname, inputDir)
-  const annotationsPath = join(inputDir,"_annotations.txt")
-  const classesPath = join(inputDir,"_classes.txt")
+export function yoloV4ToCoco(baseDir = './yoloDataDir/') {
+  const results: { [key: string]: CocoDatasetFormat } = {};
+  baseDir = resolve(__dirname, baseDir);
 
-  existOrThrow([annotationsPath, classesPath]);
+  const dirs = readdirSync(baseDir).filter(d=>d.endsWith('valid')||d.endsWith('train')||d.endsWith('test'))
+  const imgDirs = dirs.map((x) => join(baseDir, x));
 
-  const coco = cocoDatasetFormat();
+  for (let i = 0; i < imgDirs.length; i++) {
+    const thisDir = imgDirs[i]
 
-  const lines = readFileSync(annotationsPath, 'utf8').split('\n');
- 
-  let nOfAnnots = 0;
-  lines.forEach((line, i) => {
-    const [filename, ...annotations] = line.trim().split(' ');
+    const annotationsPath = join(thisDir, '_annotations.txt');
+    const classesPath = join(thisDir, '_classes.txt');
+    existOrThrow([annotationsPath, classesPath]);
 
-    const imagePath = join(inputDir, filename);
+    const coco = cocoDatasetFormat();
 
-    const imgField = imageField(i, filename, sizeOf(imagePath));
-    coco.images.push(imgField);
 
-    for (const annotation of annotations) {
-      const [x1, y1, x2, y2, rawCategory] = annotation.split(',').map(Number.parseFloat);
-      const w= x2 - x1;
-      const h= y2 - y1;
-      
-      const category = rawCategory + 1;
-      const annotationField = defaultAnnotationField(i,category , nOfAnnots);
-      annotationField.bbox = [x1, y1, w, h];
-      annotationField.area = w*h;
-      coco.annotations.push(annotationField);
-      nOfAnnots += 1;
-    }
-  })
+    const lines = readFileSync(annotationsPath, 'utf8').split('\n');
 
-  const classes = readFileSync(classesPath, 'utf8').split('\n');
-  appendClassesToCoco(coco,classes);
+    let nOfAnnots = 0;
+    lines.forEach((line, i) => {
+      const [filename, ...annotations] = line.trim().split(' ');
 
-  return JSON.stringify(coco, null, compressed ? 0 : 2);
+      const imagePath = join(thisDir, filename);
+
+      const imgField = imageField(i, filename, sizeOf(imagePath));
+      coco.images.push(imgField);
+
+      for (const annotation of annotations) {
+        const [x1, y1, x2, y2, rawCategory] = annotation
+          .split(',')
+          .map(Number.parseFloat);
+        const w = x2 - x1;
+        const h = y2 - y1;
+
+        const category = rawCategory + 1;
+        const annotationField = defaultAnnotationField(i, category, nOfAnnots);
+        annotationField.bbox = [x1, y1, w, h];
+        annotationField.area = w * h;
+        coco.annotations.push(annotationField);
+        nOfAnnots += 1;
+      }
+    });
+
+    const classes = readFileSync(classesPath, 'utf8').split('\n');
+    appendClassesToCoco(coco, classes);
+    results[dirs[i]] = coco;
+  }
+  return results;
 }
-
-
