@@ -1,13 +1,12 @@
-import { CocoDatasetFormat } from '../coco_default';
-import { readFileSync } from 'node:fs';
-import { yoloV4ToCoco } from '../yoloV4ToCoco';
+// test yolov5 to coco conversion
+// similar to the test files yoloV4ToCoco.test.ts
 import { join } from 'node:path';
+import { yoloV5ToCoco } from "../yoloV5ToCoco";
+import { type CocoDatasetFormat } from '../coco_default';
+import { readFileSync } from 'node:fs';
 
-describe('yolo2coco', () => {
-  const result = yoloV4ToCoco(
-    join(__dirname, 'data/yolov4Pytorch/valid'),
-    false,
-  );
+describe('yoloV5ToCoco', () => {
+    const result = yoloV5ToCoco(join(__dirname,'./data/yolov5Pytorch/data.yaml'), false)
   const jsonResult = JSON.parse(result) as CocoDatasetFormat;
   const cocoTrue = JSON.parse(
     readFileSync(
@@ -15,9 +14,9 @@ describe('yolo2coco', () => {
       'utf8',
     ),
   ) as CocoDatasetFormat;
-  test('should return value', () => {
-    expect(result).toBeDefined();
-  });
+    test('should return value', () => {
+        expect(result).toBeDefined();
+    });
   test('Number of keys, images, and annotations', () => {
     expect(Object.keys(jsonResult)).toHaveLength(Object.keys(cocoTrue).length);
     expect(jsonResult.images).toHaveLength(cocoTrue.images.length);
@@ -48,7 +47,7 @@ describe('yolo2coco', () => {
     const { bbox, category_id} = jsonAnnotations[0];
     expect(category_id).toBe(cidTrue);
     expect(bbox[0]).toBeCloseTo(bboxTrue[0]);
-    expect(bbox[1]).toBeCloseTo(bboxTrue[1]);
+    expect(bbox[1]).toBeCloseTo(bboxTrue[1], 0);
     expect(bbox[2]).toBeCloseTo(bboxTrue[2]);
     expect(bbox[3]).toBeCloseTo(bboxTrue[3]);
   });

@@ -1,7 +1,2 @@
-/**
- * My module
- * @returns A very important number
- */
-export function myModule(): number {
-  return 42;
-}
+export * from "./yoloV4ToCoco"
+export * from "./yoloV5ToCoco"
