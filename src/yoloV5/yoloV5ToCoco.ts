@@ -4,12 +4,12 @@ import { parseAnnotation } from './parseAnnot';
 
 import YAML from 'yaml';
 import sizeOf from 'image-size';
-import { cocoDatasetFormat as coco } from '../src/coco_default';
+import { cocoDatasetFormat as coco } from '../coco_default';
 import {
   appendClassesToCoco,
   defaultAnnotationField,
   imageField,
-} from '../src/coco_utils';
+} from '../coco_utils';
 
 /**
  * Converts a yoloV5 dataset to a coco dataset
