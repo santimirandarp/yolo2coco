@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import sizeOf from 'image-size';
-import {cocoDatasetFormat as coco } from '../coco_default';
+import {cocoDatasetFormat} from '../coco_default';
 import { appendClassesToCoco,existOrThrow,defaultAnnotationField, imageField } from '../coco_utils';
 
 /**
@@ -13,12 +13,14 @@ export function yoloV4ToCoco(
   inputDir = './train/',
   compressed=true
 ) {
-  
+   
   inputDir = resolve(__dirname, inputDir)
   const annotationsPath = join(inputDir,"_annotations.txt")
   const classesPath = join(inputDir,"_classes.txt")
 
   existOrThrow([annotationsPath, classesPath]);
+
+  const coco = cocoDatasetFormat();
 
   const lines = readFileSync(annotationsPath, 'utf8').split('\n');
  

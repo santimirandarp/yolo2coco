@@ -35,7 +35,8 @@ export interface CocoDatasetFormat {
       iscrowd: number;
     }[];
   }
-  export const cocoDatasetFormat: CocoDatasetFormat = {
+  export function cocoDatasetFormat(): CocoDatasetFormat{
+    return{ 
     info: {
       description: "COCO 2017 Dataset",
       url: "http://cocodataset.org",
@@ -54,5 +55,5 @@ export interface CocoDatasetFormat {
     categories: [ ],
     images: [],
     annotations: [],
-  };
+  }};
   

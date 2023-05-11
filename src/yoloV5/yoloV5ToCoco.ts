@@ -4,7 +4,7 @@ import { parseAnnotation } from './parseAnnot';
 
 import YAML from 'yaml';
 import sizeOf from 'image-size';
-import { cocoDatasetFormat as coco } from '../coco_default';
+import { CocoDatasetFormat, cocoDatasetFormat } from '../coco_default';
 import {
   appendClassesToCoco,
   defaultAnnotationField,
@@ -14,12 +14,10 @@ import {
 /**
  * Converts a yoloV5 dataset to a coco dataset
  * @param inputFile - path to the yoloV5 yaml file
- * @param compressed - if true, the output json will be minified, otherwise it will be pretty printed
  */
-export function yoloV5ToCoco(pathToYAML = './data.yaml', compressed = true) {
+export function yoloV5ToCoco(pathToYAML = './data.yaml') {
   // get the yaml.keys
   pathToYAML = resolve(__dirname, pathToYAML);
-
   const {
     train,
     val,
@@ -27,21 +25,23 @@ export function yoloV5ToCoco(pathToYAML = './data.yaml', compressed = true) {
     names: classes,
   } = YAML.parse(rfs(pathToYAML, 'utf8'));
 
-  appendClassesToCoco(coco, classes);
-
+  const results: { [key: string]: CocoDatasetFormat } = {};
   const baseDir = dirname(pathToYAML);
   const imgDirs = [train, val, test]
     .filter((x) => x)
     .map((x) => join(baseDir, x));
 
-  for (const imgDir of imgDirs) {
+  for (let i = 0; i < imgDirs.length; i++) {
+    const imgDir = imgDirs[i];
     try {
+      const coco = cocoDatasetFormat();
+      appendClassesToCoco(coco, classes);
       const imgPaths = readdirSync(imgDir).map((f) => join(imgDir, f));
 
       let nOfAnnots = 0;
       imgPaths.forEach((imgPath, i) => {
         const imageName = basename(imgPath);
-        const { height, width }= sizeOf(imgPath);
+        const { height, width } = sizeOf(imgPath);
         if (!height || !width) {
           throw new Error("Couldn't get image size for " + imgPath);
         }
@@ -53,8 +53,10 @@ export function yoloV5ToCoco(pathToYAML = './data.yaml', compressed = true) {
         const lines = rfs(labelFile, 'utf8').split('\n');
 
         for (const line of lines) {
-
-          const { rawCategory, bbox, area } = parseAnnotation(line, { width, height });
+          const { rawCategory, bbox, area } = parseAnnotation(line, {
+            width,
+            height,
+          });
           const annotationField = defaultAnnotationField(
             i,
             rawCategory + 1,
@@ -66,9 +68,16 @@ export function yoloV5ToCoco(pathToYAML = './data.yaml', compressed = true) {
           nOfAnnots += 1;
         }
       });
+      if (i === 0) {
+        results.train = coco;
+      } else if (i === 1) {
+        results.val = coco;
+      } else {
+        results.test = coco;
+      }
     } catch (e) {
       console.error(e);
     }
   }
-  return JSON.stringify(coco, null, compressed ? 0 : 2);
+  return results;
 }
