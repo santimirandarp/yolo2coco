@@ -29,57 +29,46 @@ export function yoloV5ToCoco(pathToYAML = './data.yaml') {
 
   const results: { [key: string]: CocoDatasetFormat } = {};
   const baseDir = dirname(pathToYAML);
-  const imgDirs = [train, val, test]
-    .filter((x) => x)
-    .map((x) => join(baseDir, x));
 
-  for (let i = 0; i < imgDirs.length; i++) {
-    const imgDir = imgDirs[i];
-    try {
-      const coco = cocoDatasetFormat();
-      appendClassesToCoco(coco, classes);
-      const imgPaths = readdirSync(imgDir).map((f) => join(imgDir, f));
+  for (let [key, imgDir] of Object.entries({ train, val, test})) {
+    if(!imgDir) continue;
+    imgDir = join(baseDir, imgDir);
+    const coco = cocoDatasetFormat();
+    appendClassesToCoco(coco, classes);
+    const imgPaths = readdirSync(imgDir).map((f) => join(imgDir, f));
 
-      let nOfAnnots = 0;
-      imgPaths.forEach((imgPath, i) => {
-        const imageName = basename(imgPath);
-        const { height, width } = sizeOf(imgPath);
-        if (!height || !width) {
-          throw new Error(`Couldn't get image size for ${imgPath}`);
-        }
-        const imgField = imageField(i, imageName, { height, width });
-        coco.images.push(imgField);
-        const labelFile = imgPath
-          .replace('/images/', '/labels/')
-          .replace(/\.[^/.]+$/, '.txt');
-        const lines = rfs(labelFile, 'utf8').split('\n');
-
-        for (const line of lines) {
-          const { rawCategory, bbox, area } = parseAnnotation(line, {
-            width,
-            height,
-          });
-          const annotationField = defaultAnnotationField(
-            i,
-            rawCategory + 1,
-            nOfAnnots,
-          );
-          annotationField.bbox = bbox;
-          annotationField.area = area;
-          coco.annotations.push(annotationField);
-          nOfAnnots += 1;
-        }
-      });
-      if (i === 0) {
-        results.train = coco;
-      } else if (i === 1) {
-        results.val = coco;
-      } else {
-        results.test = coco;
+    let nOfAnnots = 0;
+    imgPaths.forEach((imgPath, i) => {
+      const imageName = basename(imgPath);
+      const { height, width } = sizeOf(imgPath);
+      if (!height || !width) {
+        throw new Error(`Couldn't get image size for ${imgPath}`);
       }
-    } catch (e) {
-      console.error(e);
-    }
+      const imgField = imageField(i, imageName, { height, width });
+      coco.images.push(imgField);
+      const labelFile = imgPath
+        .replace('/images/', '/labels/')
+        .replace(/\.[^/.]+$/, '.txt');
+      const lines = rfs(labelFile, 'utf8').split('\n');
+
+      for (const line of lines) {
+        const { rawCategory, bbox, area } = parseAnnotation(line, {
+          width,
+          height,
+        });
+        const annotationField = defaultAnnotationField(
+          i,
+          rawCategory + 1,
+          nOfAnnots,
+        );
+        annotationField.bbox = bbox;
+        annotationField.area = area;
+        coco.annotations.push(annotationField);
+        nOfAnnots += 1;
+      }
+    });
+    results[key] = coco;
   }
+  console.log(results);
   return results;
 }

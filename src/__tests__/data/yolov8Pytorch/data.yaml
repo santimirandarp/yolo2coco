@@ -1,13 +1,4 @@
-train: ../train/images
 val: ../valid/images
-test: ../test/images
 
 nc: 3
 names: ['dark logo', 'old logo', 'white logo']
-
-roboflow:
-  workspace: streamlit
-  project: streamlit-logos
-  version: 3
-  license: Public Domain
-  url: https://universe.roboflow.com/streamlit/streamlit-logos/dataset/3
