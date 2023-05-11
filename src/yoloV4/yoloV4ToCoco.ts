@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import sizeOf from 'image-size';
-import {cocoDatasetFormat as coco } from './coco_default';
-import { appendClassesToCoco,existOrThrow,defaultAnnotationField, imageField } from './coco_utils';
+import {cocoDatasetFormat as coco } from '../coco_default';
+import { appendClassesToCoco,existOrThrow,defaultAnnotationField, imageField } from '../coco_utils';
 
 /**
  * Converts a yoloV4 dataset to a coco dataset

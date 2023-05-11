@@ -1,14 +1,15 @@
 import { readdirSync, readFileSync as rfs } from 'node:fs';
 import { resolve, basename, dirname, join } from 'node:path';
+import { parseAnnotation } from './parseAnnot';
 
 import YAML from 'yaml';
 import sizeOf from 'image-size';
-import { cocoDatasetFormat as coco } from './coco_default';
+import { cocoDatasetFormat as coco } from '../src/coco_default';
 import {
   appendClassesToCoco,
   defaultAnnotationField,
   imageField,
-} from './coco_utils';
+} from '../src/coco_utils';
 
 /**
  * Converts a yoloV5 dataset to a coco dataset
@@ -40,36 +41,27 @@ export function yoloV5ToCoco(pathToYAML = './data.yaml', compressed = true) {
       let nOfAnnots = 0;
       imgPaths.forEach((imgPath, i) => {
         const imageName = basename(imgPath);
-        const imageSize = sizeOf(imgPath);
-        const imgField = imageField(i, imageName, imageSize);
+        const { height, width }= sizeOf(imgPath);
+        if (!height || !width) {
+          throw new Error("Couldn't get image size for " + imgPath);
+        }
+        const imgField = imageField(i, imageName, { height, width });
         coco.images.push(imgField);
-
         const labelFile = imgPath
           .replace('/images/', '/labels/')
           .replace(/\.[^/.]+$/, '.txt');
         const lines = rfs(labelFile, 'utf8').split('\n');
 
-        const naturalWidth = imageSize.width;
-        const naturalHeight = imageSize.height;
-        if (!naturalWidth || !naturalHeight)
-          throw new Error(`Could not get image size for ${imgPath}`);
-
         for (const line of lines) {
-          const [rawCategory, xc, yc, w, h] = line
-            .split(' ')
-            .map(Number.parseFloat);
+
+          const { rawCategory, bbox, area } = parseAnnotation(line, { width, height });
           const annotationField = defaultAnnotationField(
             i,
             rawCategory + 1,
             nOfAnnots,
           );
-          annotationField.bbox = [
-            (xc - w / 2) * naturalWidth,
-            (yc - h / 2) * naturalHeight,
-            w * naturalWidth,
-            h * naturalHeight,
-          ];
-          annotationField.area = w * h;
+          annotationField.bbox = bbox;
+          annotationField.area = area;
           coco.annotations.push(annotationField);
           nOfAnnots += 1;
         }

@@ -1,7 +1,7 @@
 // test yolov5 to coco conversion
 // similar to the test files yoloV4ToCoco.test.ts
 import { join } from 'node:path';
-import { yoloV5ToCoco } from "../yoloV5ToCoco";
+import { yoloV5ToCoco } from "../../yoloV5/yoloV5ToCoco";
 import { type CocoDatasetFormat } from '../coco_default';
 import { readFileSync } from 'node:fs';
 

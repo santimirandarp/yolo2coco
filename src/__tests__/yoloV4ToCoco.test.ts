@@ -1,6 +1,6 @@
 import { CocoDatasetFormat } from '../coco_default';
 import { readFileSync } from 'node:fs';
-import { yoloV4ToCoco } from '../yoloV4ToCoco';
+import { yoloV4ToCoco } from '../yoloV4/yoloV4ToCoco';
 import { join } from 'node:path';
 
 describe('yolo2coco', () => {
