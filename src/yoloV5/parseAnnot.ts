@@ -15,6 +15,6 @@ export function parseAnnotation(
       scaledHeight,
     ],
     area: scaledWidth * scaledHeight,
-    rawCategory
+    rawCategory,
   };
 }

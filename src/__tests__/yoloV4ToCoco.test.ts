@@ -1,12 +1,11 @@
-import { CocoDatasetFormat } from '../coco_default';
 import { readFileSync } from 'node:fs';
-import { yoloV4ToCoco } from '../yoloV4/yoloV4ToCoco';
 import { join } from 'node:path';
 
+import { CocoDatasetFormat } from '../coco_default';
+import { yoloV4ToCoco } from '../yoloV4/yoloV4ToCoco';
+
 describe('yolo2coco', () => {
-  const jsonResult = yoloV4ToCoco(
-    join(__dirname, 'data/yolov4Pytorch'),
-  ).valid
+  const jsonResult = yoloV4ToCoco(join(__dirname, 'data/yolov4Pytorch')).valid;
   const cocoTrue = JSON.parse(
     readFileSync(
       join(__dirname, 'data/coco/valid/_annotations.coco.json'),
@@ -27,11 +26,10 @@ describe('yolo2coco', () => {
   });
   test('compare image and annotation and category id', () => {
     // compare an image
-    const { file_name, width, height, id } = jsonResult.images[0]
-    const trueImage = cocoTrue.images.filter( (img) => {
-        return img.file_name === file_name 
-      }
-    );
+    const { file_name, width, height, id } = jsonResult.images[0];
+    const trueImage = cocoTrue.images.filter((img) => {
+      return img.file_name === file_name;
+    });
     expect(trueImage[0]).toMatchObject({ file_name, width, height });
 
     // compare an annotation
@@ -42,8 +40,8 @@ describe('yolo2coco', () => {
       (ann) => ann.image_id === id,
     );
 
-    const { bbox: bboxTrue, category_id:cidTrue } = trueAnnotations[0];
-    const { bbox, category_id} = jsonAnnotations[0];
+    const { bbox: bboxTrue, category_id: cidTrue } = trueAnnotations[0];
+    const { bbox, category_id } = jsonAnnotations[0];
     expect(category_id).toBe(cidTrue);
     expect(bbox[0]).toBeCloseTo(bboxTrue[0]);
     expect(bbox[1]).toBeCloseTo(bboxTrue[1]);

@@ -1,15 +1,17 @@
 import { readdirSync, readFileSync as rfs } from 'node:fs';
 import { resolve, basename, dirname, join } from 'node:path';
-import { parseAnnotation } from './parseAnnot';
 
-import YAML from 'yaml';
 import sizeOf from 'image-size';
+import YAML from 'yaml';
+
 import { CocoDatasetFormat, cocoDatasetFormat } from '../coco_default';
 import {
   appendClassesToCoco,
   defaultAnnotationField,
   imageField,
 } from '../coco_utils';
+
+import { parseAnnotation } from './parseAnnot';
 
 /**
  * Converts a yoloV5 dataset to a coco dataset
@@ -43,7 +45,7 @@ export function yoloV5ToCoco(pathToYAML = './data.yaml') {
         const imageName = basename(imgPath);
         const { height, width } = sizeOf(imgPath);
         if (!height || !width) {
-          throw new Error("Couldn't get image size for " + imgPath);
+          throw new Error(`Couldn't get image size for ${imgPath}`);
         }
         const imgField = imageField(i, imageName, { height, width });
         coco.images.push(imgField);

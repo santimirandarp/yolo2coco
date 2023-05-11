@@ -1,4 +1,5 @@
 import { existsSync } from 'fs';
+
 import { type CocoDatasetFormat } from './coco_default';
 
 export function defaultAnnotationField(
@@ -17,7 +18,11 @@ export function defaultAnnotationField(
   };
 }
 
-export function imageField(i: number, name: string, size: any) {
+export function imageField(
+  i: number,
+  name: string,
+  size: { width: number; height: number },
+) {
   return {
     id: i,
     license: 1,
@@ -40,7 +45,7 @@ export function existOrThrow(args: string[] | string) {
 
 export function appendClassesToCoco(
   coco: CocoDatasetFormat,
-  classes:string[],
+  classes: string[],
 ) {
   classes.forEach((name, i) => {
     coco.categories.push({
