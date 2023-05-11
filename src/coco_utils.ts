@@ -1,8 +1,11 @@
 import { existsSync } from 'fs';
-import { readFileSync } from 'node:fs';
 import { type CocoDatasetFormat } from './coco_default';
 
-export function defaultAnnotationField(imageId: number, category: number, nOfAnnots: number) {
+export function defaultAnnotationField(
+  imageId: number,
+  category: number,
+  nOfAnnots: number,
+) {
   return {
     id: nOfAnnots,
     image_id: imageId,
@@ -24,19 +27,24 @@ export function imageField(i: number, name: string, size: any) {
     date_captured: '',
   };
 }
-export function existOrThrow(args: string[]) {
-  for (const dir of args){
-    if (!existsSync(dir)) {
-      throw new Error(`The file or directory ${dir} does not exist.`)
+export function existOrThrow(args: string[] | string) {
+  if (typeof args === 'string') {
+    args = [args];
+    for (const dir of args) {
+      if (!existsSync(dir)) {
+        throw new Error(`The file or directory ${dir} does not exist.`);
+      }
     }
   }
 }
 
-export function appendClassesToCoco(coco:CocoDatasetFormat, classesPath:string){
-  const classes = readFileSync(classesPath, 'utf8').split('\n');
+export function appendClassesToCoco(
+  coco: CocoDatasetFormat,
+  classes:string[],
+) {
   classes.forEach((name, i) => {
     coco.categories.push({
-      id: i+1,
+      id: i + 1,
       name: name.trim(),
       supercategory: 'none',
     });

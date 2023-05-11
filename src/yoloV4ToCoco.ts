@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import sizeOf from 'image-size';
 import {cocoDatasetFormat as coco } from './coco_default';
 import { appendClassesToCoco,existOrThrow,defaultAnnotationField, imageField } from './coco_utils';
@@ -44,7 +44,8 @@ export function yoloV4ToCoco(
     }
   })
 
-  appendClassesToCoco(coco,classesPath);
+  const classes = readFileSync(classesPath, 'utf8').split('\n');
+  appendClassesToCoco(coco,classes);
 
   return JSON.stringify(coco, null, compressed ? 0 : 2);
 }
