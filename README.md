@@ -9,17 +9,12 @@ Basic Yolo-to-Coco conversion tool.
 
 Currently it converts the YOLO v4,v5,v6,v7 and v8.
 
-The converters expect either:
-* a path to the main directory (v4) 
-* or a path to the `data.yaml` (v5-8) file.
-
-They return an object with the keys `{ valid, train, test }` (v4) or `{ val, train, test }` (v5-8) with the Coco format.
-
-You can then use `fs.writeFileSync("name.json", JSON.stringify(key))` to save the files.
 
 ## Installation
 
-`npm i yolo2coco`
+```
+npm i yolo2coco
+```
 
 ## Usage
 
@@ -31,6 +26,21 @@ const {valid, train, test} = yoloV4ToCoco("./path/to/folder")
 // const {val, train, test} = yoloV5ToCoco("./path/to/data.yaml")
 
 ```
+
+## API Basics
+
+<details>
+<summary>See Here</summary>
+
+The converters expect either:
+* a path to the main directory (v4) 
+* or a path to the `data.yaml` (v5-8) file.
+
+They return an object with the keys `{ valid, train, test }` (v4) or `{ val, train, test }` (v5-8) with the Coco format.
+
+You can then use `fs.writeFileSync("name.json", JSON.stringify(key))` to save the files.
+
+</details>
 
 ## License
 
