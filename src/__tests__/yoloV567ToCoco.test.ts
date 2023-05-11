@@ -1,22 +1,26 @@
 // test yolov5 to coco conversion
 // similar to the test files yoloV4ToCoco.test.ts
 import { join } from 'node:path';
-import { yoloV5ToCoco } from "../yoloV5/yoloV5ToCoco";
+import { yoloV5ToCoco } from '../yoloV5/yoloV5ToCoco';
 import { type CocoDatasetFormat } from '../coco_default';
 import { readFileSync } from 'node:fs';
 
-describe('yoloV5ToCoco', () => {
-    const result = yoloV5ToCoco(join(__dirname,'./data/yolov5Pytorch/data.yaml'), false)
-  const jsonResult = JSON.parse(result) as CocoDatasetFormat;
-  const cocoTrue = JSON.parse(
-    readFileSync(
-      join(__dirname, 'data/coco/valid/_annotations.coco.json'),
-      'utf8',
-    ),
-  ) as CocoDatasetFormat;
-    test('should return value', () => {
-        expect(result).toBeDefined();
-    });
+const testCases = [
+  ['./data/yolov5Pytorch/data.yaml'],
+  ['./data/yolov6Meituan/data.yaml'],
+  ['./data/yolov7Pytorch/data.yaml'],
+];
+const cocoTrue = JSON.parse(
+  readFileSync(
+    join(__dirname, 'data/coco/valid/_annotations.coco.json'),
+    'utf8',
+  ),
+) as CocoDatasetFormat;
+describe.each(testCases)('test($i)', (path) => {
+  const jsonResult = yoloV5ToCoco(join(__dirname, path)).val;
+  test('should return value', () => {
+    expect(jsonResult).toBeDefined();
+  });
   test('Number of keys, images, and annotations', () => {
     expect(Object.keys(jsonResult)).toHaveLength(Object.keys(cocoTrue).length);
     expect(jsonResult.images).toHaveLength(cocoTrue.images.length);
@@ -28,11 +32,10 @@ describe('yoloV5ToCoco', () => {
   });
   test('compare image and annotation and category id', () => {
     // compare an image
-    const { file_name, width, height, id } = jsonResult.images[0]
-    const trueImage = cocoTrue.images.filter( (img) => {
-        return img.file_name === file_name 
-      }
-    );
+    const { file_name, width, height, id } = jsonResult.images[0];
+    const trueImage = cocoTrue.images.filter((img) => {
+      return img.file_name === file_name;
+    });
     expect(trueImage[0]).toMatchObject({ file_name, width, height });
 
     // compare an annotation
@@ -43,8 +46,8 @@ describe('yoloV5ToCoco', () => {
       (ann) => ann.image_id === id,
     );
 
-    const { bbox: bboxTrue, category_id:cidTrue } = trueAnnotations[0];
-    const { bbox, category_id} = jsonAnnotations[0];
+    const { bbox: bboxTrue, category_id: cidTrue } = trueAnnotations[0];
+    const { bbox, category_id } = jsonAnnotations[0];
     expect(category_id).toBe(cidTrue);
     expect(bbox[0]).toBeCloseTo(bboxTrue[0]);
     expect(bbox[1]).toBeCloseTo(bboxTrue[1], 0);
