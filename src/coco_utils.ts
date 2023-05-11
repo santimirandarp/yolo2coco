@@ -27,8 +27,8 @@ export function imageField(
     id: i,
     license: 1,
     file_name: name,
-    height: size.height ,
-    width: size.width ,
+    height: size.height,
+    width: size.width,
     date_captured: '',
   };
 }

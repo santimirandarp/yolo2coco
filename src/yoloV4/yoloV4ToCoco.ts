@@ -43,8 +43,9 @@ export function yoloV4ToCoco(baseDir = './yoloDataDir/') {
 
       const imagePath = join(thisDir, filename);
       const { width, height } = sizeOf(imagePath);
-      if (!width || !height)
-        {throw new Error(`Could not get image size for ${imagePath}`);}
+      if (!width || !height) {
+        throw new Error(`Could not get image size for ${imagePath}`);
+      }
       const imgField = imageField(i, filename, { width, height });
       coco.images.push(imgField);
 

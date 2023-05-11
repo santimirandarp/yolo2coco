@@ -30,8 +30,8 @@ export function yoloV5ToCoco(pathToYAML = './data.yaml') {
   const results: { [key: string]: CocoDatasetFormat } = {};
   const baseDir = dirname(pathToYAML);
 
-  for (let [key, imgDir] of Object.entries({ train, val, test})) {
-    if(!imgDir) continue;
+  for (let [key, imgDir] of Object.entries({ train, val, test })) {
+    if (!imgDir) continue;
     imgDir = join(baseDir, imgDir);
     const coco = cocoDatasetFormat();
     appendClassesToCoco(coco, classes);
@@ -69,6 +69,5 @@ export function yoloV5ToCoco(pathToYAML = './data.yaml') {
     });
     results[key] = coco;
   }
-  console.log(results);
   return results;
 }

@@ -24,7 +24,7 @@ You can then use `fs.writeFileSync("name.json", JSON.stringify(key))` to save th
 ## Usage
 
 ```typescript
-import { yoloV4ToCoco, /* etc */ } from 'yolo2coco';
+import { yoloV4ToCoco, yoloV5ToCoco/* etc */ } from 'yolo2coco';
 
 const {valid, train, test} = yoloV4ToCoco("./path/to/folder")
 
