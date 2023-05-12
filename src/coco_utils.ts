@@ -1,7 +1,3 @@
-import { existsSync } from 'fs';
-
-import { type CocoDatasetFormat } from './coco_default';
-
 export function defaultAnnotationEntry(
   imageId: number,
   category: number,
@@ -18,7 +14,7 @@ export function defaultAnnotationEntry(
   };
 }
 
-export function imageEntry(
+export function makeImageEntry(
   imageId: number,
   name: string,
   size: { width: number; height: number },
@@ -32,27 +28,11 @@ export function imageEntry(
     date_captured: '',
   };
 }
-export function allExist(args: string[] | string) {
-  if (typeof args === 'string') {
-    args = [args];
-    for (const dir of args) {
-      if (!existsSync(dir)) {
-        return false;
-      }
-    }
-  }
-  return true;
-}
 
-export function appendClassesToCoco(
-  coco: CocoDatasetFormat,
-  classes: string[],
-) {
-  classes.forEach((name, i) => {
-    coco.categories.push({
-      id: i + 1,
-      name: name.trim(),
-      supercategory: 'none',
-    });
-  });
+export function makeClassEntry(name: string, id: number) {
+  return {
+    id: id + 1,
+    name: name.trim(),
+    supercategory: 'none',
+  };
 }

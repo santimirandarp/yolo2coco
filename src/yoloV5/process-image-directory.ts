@@ -4,7 +4,7 @@ import { basename, join } from 'node:path';
 import sizeOf from 'image-size';
 
 import { cocoDatasetFormat } from '../coco_default';
-import { appendClassesToCoco, imageEntry } from '../coco_utils';
+import { makeClassEntry, makeImageEntry } from '../coco_utils';
 
 import { makeAnnotationEntry } from './make-annotation';
 
@@ -12,7 +12,9 @@ export function processImageDirectory(imgDir: string, classes: string[]) {
   let annotationId = 0;
 
   const coco = cocoDatasetFormat();
-  appendClassesToCoco(coco, classes);
+  classes.forEach((name, id) => {
+    coco.categories.push(makeClassEntry(name, id));
+  });
 
   const imgPaths = readdirSync(imgDir).map((f) => join(imgDir, f));
 
@@ -22,8 +24,9 @@ export function processImageDirectory(imgDir: string, classes: string[]) {
     if (!height || !width) {
       throw new Error(`Couldn't get image size for ${imgPath}`);
     }
-    const imgField = imageEntry(imageId, imageName, { height, width });
+    const imgField = makeImageEntry(imageId, imageName, { height, width });
     coco.images.push(imgField);
+
     const labelFile = imgPath
       .replace('/images/', '/labels/')
       .replace(/\.[^/.]+$/, '.txt');
