@@ -9,7 +9,7 @@ import { processImageDirectory } from './process-image-directory';
  * Converts YoloV4 labels to COCO labels
  * @param baseDir - path to the directory containing the train, valid, and test directories
  */
-export function yoloV4ToCoco(baseDirectoryPath = './yoloDataDir/') {
+export function yoloV4ToCoco(baseDirectoryPath: string) {
   const results: { [key: string]: CocoDatasetFormat } = {};
   baseDirectoryPath = resolve(baseDirectoryPath);
 

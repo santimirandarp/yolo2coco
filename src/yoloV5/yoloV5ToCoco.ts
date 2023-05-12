@@ -10,7 +10,7 @@ import { processImageDirectory } from './process-image-directory';
  * Converts a yoloV5 dataset to a coco dataset
  * @param inputFile - path to the yoloV5 yaml file
  */
-export function yoloV5ToCoco(pathToYAML = './data.yaml') {
+export function yoloV5ToCoco(pathToYAML: string) {
   // get the yaml.keys
   pathToYAML = resolve(pathToYAML);
   const {
