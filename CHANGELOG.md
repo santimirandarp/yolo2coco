@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/santimirandarp/yolo2coco/compare/v2.0.1...v2.1.0) (2023-05-12)
+
+
+### Features
+
+* implement merging for yolov4 (partially) ([bc79909](https://github.com/santimirandarp/yolo2coco/commit/bc799093606bdae1900ba5d1e52f31b6b7d2bb76))
+
 ## [2.0.1](https://github.com/santimirandarp/yolo2coco/compare/v2.0.0...v2.0.1) (2023-05-12)
 
 
