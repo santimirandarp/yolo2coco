@@ -4,9 +4,10 @@ import { basename, join } from 'node:path';
 import sizeOf from 'image-size';
 
 import { cocoDatasetFormat } from '../coco_default';
-import { makeClassEntry, makeImageEntry } from '../coco_utils';
+import { makeClassEntry } from "../entries/make_class_entry";
+import { makeImageEntry } from "../entries/make_image_entry";
 
-import { makeAnnotationEntry } from './make-annotation';
+import { makeAnnotationEntry } from './make_annotation';
 
 export function processDataDirectory(imgDir: string, classes: string[]) {
   let annotationId = 0;

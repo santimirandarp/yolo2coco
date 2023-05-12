@@ -1,19 +1,14 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { CocoDatasetFormat } from '../coco_default';
-import { yoloV4ToCoco } from '../yoloV4/yoloV4ToCoco';
+import { CocoDatasetFormat } from '../../coco_default';
+import { yoloV4ToCoco } from '../yoloV4ToCoco';
 
+const testPath = join(__dirname, '../../', '__tests__', 'data');
 describe('yolo2coco', () => {
-  const jsonResult = yoloV4ToCoco(
-    join(__dirname, 'data/yolov4Pytorch'),
-    true,
-  ).valid;
+  const jsonResult = yoloV4ToCoco(join(testPath, 'yolov4Pytorch'), false).valid;
   const cocoTrue = JSON.parse(
-    readFileSync(
-      join(__dirname, 'data/coco/valid/_annotations.coco.json'),
-      'utf8',
-    ),
+    readFileSync(join(testPath, 'coco/valid/_annotations.coco.json'), 'utf8'),
   ) as CocoDatasetFormat;
   test('should return value', () => {
     expect(jsonResult).toBeDefined();

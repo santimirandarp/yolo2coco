@@ -5,7 +5,7 @@ import YAML from 'yaml';
 
 import { CocoDatasetFormat } from '../coco_default';
 
-import { processDataDirectory } from './process-data-directory';
+import { processDataDirectory } from './process_data_directory';
 /**
  * Converts a yoloV5 dataset to a coco dataset
  * @param inputFile - path to the yoloV5 yaml file

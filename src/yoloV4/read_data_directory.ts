@@ -2,10 +2,10 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { cocoDatasetFormat } from '../coco_default';
-import { makeClassEntry } from '../coco_utils';
-import { allExist } from '../path-exists';
+import { makeClassEntry } from "../entries/make_class_entry";
+import { allExist } from '../path_exists';
 
-import { parseAnnotationsFile } from './parse-annotations-file';
+import { parseAnnotationsFile } from './parse_annotations_file';
 
 export function readDataDirectory(directoryPath: string) {
   let annotationId = 0;

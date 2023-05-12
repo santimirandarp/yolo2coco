@@ -24,6 +24,8 @@ export interface CocoDatasetFormat {
     height: number;
     width: number;
     date_captured: string;
+    flickr_url: string;
+    coco_url: string;
   }[];
   annotations: {
     id: number;
@@ -47,9 +49,9 @@ export function cocoDatasetFormat(): CocoDatasetFormat {
     },
     licenses: [
       {
-        url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/',
+        url: 'https://opensource.org/license/mit/',
         id: 1,
-        name: 'Attribution-NonCommercial-ShareAlike License',
+        name: 'MIT License',
       },
     ],
     categories: [],

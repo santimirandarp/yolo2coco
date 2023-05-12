@@ -1,4 +1,4 @@
-import { defaultAnnotationEntry } from '../coco_utils';
+import { defaultAnnotationEntry } from "../entries/default_annotation_entry";
 
 export function makeAnnotationEntry(
   line: string,
