@@ -2,13 +2,13 @@ import { existsSync } from 'fs';
 
 import { type CocoDatasetFormat } from './coco_default';
 
-export function defaultAnnotationField(
+export function defaultAnnotationEntry(
   imageId: number,
   category: number,
-  nOfAnnots: number,
+  annotationId: number,
 ) {
   return {
-    id: nOfAnnots,
+    id: annotationId,
     image_id: imageId,
     category_id: category,
     segmentation: [],
@@ -18,13 +18,13 @@ export function defaultAnnotationField(
   };
 }
 
-export function imageField(
-  i: number,
+export function imageEntry(
+  imageId: number,
   name: string,
   size: { width: number; height: number },
 ) {
   return {
-    id: i,
+    id: imageId,
     license: 1,
     file_name: name,
     height: size.height,
@@ -32,15 +32,16 @@ export function imageField(
     date_captured: '',
   };
 }
-export function existOrThrow(args: string[] | string) {
+export function allExist(args: string[] | string) {
   if (typeof args === 'string') {
     args = [args];
     for (const dir of args) {
       if (!existsSync(dir)) {
-        throw new Error(`The file or directory ${dir} does not exist.`);
+        return false
       }
     }
   }
+  return true
 }
 
 export function appendClassesToCoco(
