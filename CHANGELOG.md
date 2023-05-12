@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/santimirandarp/yolo2coco/compare/v1.0.0...v2.0.0) (2023-05-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* automatically release documentation
+
+### workflows
+
+* automatically release documentation ([80a3084](https://github.com/santimirandarp/yolo2coco/commit/80a3084950283028d5b7fbe4d8c6ff9544a83e50))
+
 ## 1.0.0 (2023-05-12)
 
 
