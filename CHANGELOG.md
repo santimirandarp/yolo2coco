@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/santimirandarp/yolo2coco/compare/v2.0.0...v2.0.1) (2023-05-12)
+
+
+### Bug Fixes
+
+* do not include files in the yolov4 readdir ([9f6a479](https://github.com/santimirandarp/yolo2coco/commit/9f6a47973aeca2082e94bc7a3ef5b67d6d50867f))
+* force a path to directory or files. ([c569d0e](https://github.com/santimirandarp/yolo2coco/commit/c569d0e96b25003a91f7dad503471981e16e0085))
+
 ## [2.0.0](https://github.com/santimirandarp/yolo2coco/compare/v1.0.0...v2.0.0) (2023-05-12)
 
 
