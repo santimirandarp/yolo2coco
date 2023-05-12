@@ -7,6 +7,7 @@ import { CocoDatasetFormat } from '../coco_default';
 import { makeImageEntry } from '../coco_utils';
 
 import { makeAnnotationEntry } from './make-annotation';
+
 export function parseAnnotationsFile(
   coco: CocoDatasetFormat,
   annotationsPath: string,

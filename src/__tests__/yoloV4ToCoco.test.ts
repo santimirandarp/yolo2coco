@@ -5,7 +5,10 @@ import { CocoDatasetFormat } from '../coco_default';
 import { yoloV4ToCoco } from '../yoloV4/yoloV4ToCoco';
 
 describe('yolo2coco', () => {
-  const jsonResult = yoloV4ToCoco(join(__dirname, 'data/yolov4Pytorch'),true).valid;
+  const jsonResult = yoloV4ToCoco(
+    join(__dirname, 'data/yolov4Pytorch'),
+    true,
+  ).valid;
   const cocoTrue = JSON.parse(
     readFileSync(
       join(__dirname, 'data/coco/valid/_annotations.coco.json'),

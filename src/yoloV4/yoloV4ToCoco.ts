@@ -6,8 +6,8 @@ import glob from 'fast-glob';
 import { type CocoDatasetFormat, cocoDatasetFormat } from '../coco_default';
 import { makeClassEntry } from '../coco_utils';
 
-import { readDataDirectory } from './read-data-directory';
 import { parseAnnotationsFile } from './parse-annotations-file';
+import { readDataDirectory } from './read-data-directory';
 
 /**
  * Converts YoloV4 labels to COCO labels
@@ -48,7 +48,6 @@ export function yoloV4ToCoco(baseDirectoryPath: string, merge = false) {
       parseAnnotationsFile(coco, file, annotationId);
       annotationId += 1;
     }
-    console.log(coco)
     return { all: coco };
   }
 }
