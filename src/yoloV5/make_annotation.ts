@@ -7,7 +7,7 @@ export function makeAnnotationEntry(
   annotationId: number,
 ) {
   const { width: naturalWidth, height: naturalHeight } = size;
-  const [rawCategory, xc, yc, w, h] = line.split(' ').map(Number.parseFloat);
+  const [yoloCategory, xc, yc, w, h] = line.split(' ').map(Number.parseFloat);
 
   const x1 = (xc - w / 2) * naturalWidth;
   const y1 = (yc - h / 2) * naturalHeight;
@@ -15,7 +15,7 @@ export function makeAnnotationEntry(
   const scaledHeight = h * naturalHeight;
 
   return {
-    ...defaultAnnotationEntry(imageId, rawCategory + 1, annotationId),
+    ...defaultAnnotationEntry(imageId, yoloCategory, annotationId),
     bbox: [x1, y1, scaledWidth, scaledHeight],
     area: scaledWidth * scaledHeight,
   };
