@@ -13,9 +13,11 @@ export function yoloV4ToCoco(baseDirectoryPath: string) {
   const results: { [key: string]: CocoDatasetFormat } = {};
   baseDirectoryPath = resolve(baseDirectoryPath);
 
-  const imageDirectories = readdirSync(baseDirectoryPath).map((x) =>
-    join(baseDirectoryPath, x),
-  );
+  const imageDirectories = readdirSync(baseDirectoryPath, {
+    withFileTypes: true,
+  })
+    .filter((d) => d.isDirectory())
+    .map((x) => join(baseDirectoryPath, x.name));
 
   for (let currentDir of imageDirectories) {
     const coco = processImageDirectory(currentDir);
