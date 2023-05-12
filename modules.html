@@ -15,50 +15,30 @@
 <div class="col-8 col-content">
 <div class="tsd-page-title">
 <h2>yolo2coco</h2></div>
-<div class="tsd-panel tsd-typography">
-<a href="#yolo2coco" id="yolo2coco" style="color: inherit; text-decoration: none;">
-  <h1>yolo2coco</h1>
-</a>
-<p><a href="https://www.npmjs.com/package/yolo2coco"><img src="https://img.shields.io/npm/v/yolo2coco.svg" alt="NPM version"></a>
-<a href="https://github.com/santimirandarp/yolo2coco/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://github.com/santimirandarp/yolo2coco/workflows/Node.js%20CI/badge.svg?branch=main" alt="build status"></a>
-<a href="https://codecov.io/gh/santimirandarp/yolo2coco"><img src="https://img.shields.io/codecov/c/github/santimirandarp/yolo2coco.svg" alt="Test coverage"></a>
-<a href="https://www.npmjs.com/package/yolo2coco"><img src="https://img.shields.io/npm/dm/yolo2coco.svg" alt="npm download"></a></p>
-<p>Basic Yolo-to-Coco conversion tool.</p>
-<p>Currently it converts the YOLO v4,v5,v6,v7 and v8.</p>
-
-<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-  <h2>Installation</h2>
-</a>
-<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">i</span><span class="hl-1"> </span><span class="hl-0">yolo2coco</span>
-</code></pre>
-
-<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-  <h2>Usage</h2>
-</a>
-<pre><code class="language-typescript"><span class="hl-2">import</span><span class="hl-1"> { </span><span class="hl-0">yoloV4ToCoco</span><span class="hl-1">, </span><span class="hl-0">yoloV5ToCoco</span><span class="hl-3">/* etc */</span><span class="hl-1"> } </span><span class="hl-2">from</span><span class="hl-1"> </span><span class="hl-4">&#39;yolo2coco&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> {</span><span class="hl-6">valid</span><span class="hl-1">, </span><span class="hl-6">train</span><span class="hl-1">, </span><span class="hl-6">test</span><span class="hl-1">} = </span><span class="hl-7">yoloV4ToCoco</span><span class="hl-1">(</span><span class="hl-4">&quot;./path/to/folder&quot;</span><span class="hl-1">)</span><br/><br/><span class="hl-3">// const {val, train, test} = yoloV5ToCoco(&quot;./path/to/data.yaml&quot;)</span><br/>
-</code></pre>
-
-<a href="#api-basics" id="api-basics" style="color: inherit; text-decoration: none;">
-  <h2>API Basics</h2>
-</a>
-<details>
-<summary>See Here</summary>
-
-<p>The converters expect either:</p>
-<ul>
-<li>a path to the main directory (v4) </li>
-<li>or a path to the <code>data.yaml</code> (v5-8) file.</li>
-</ul>
-<p>They return an object with the keys <code>{ valid, train, test }</code> (v4) or <code>{ val, train, test }</code> (v5-8) with the Coco format.</p>
-<p>You can then use <code>fs.writeFileSync(&quot;name.json&quot;, JSON.stringify(key))</code> to save the files.</p>
-</details>
-
-
-<a href="#license" id="license" style="color: inherit; text-decoration: none;">
-  <h2>License</h2>
-</a>
-<p><a href="./LICENSE">MIT</a></p>
-</div></div>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
+<h5 class="tsd-index-heading uppercase" role="button" aria-expanded="false" tabIndex=0><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1.5 5.50969L8 11.6609L14.5 5.50969L12.5466 3.66086L8 7.96494L3.45341 3.66086L1.5 5.50969Z" fill="var(--color-text)"></path></svg> Index</h5></summary>
+<div class="tsd-accordion-details">
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">References</h3>
+<div class="tsd-index-list"><a href="modules.html#yoloV6ToCoco" class="tsd-index-link tsd-kind-reference"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF4D82" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-8388608-path"></rect><path d="M10.354 17V8.24H13.066C13.586 8.24 14.042 8.348 14.434 8.564C14.826 8.772 15.13 9.064 15.346 9.44C15.562 9.816 15.67 10.256 15.67 10.76C15.67 11.352 15.514 11.86 15.202 12.284C14.898 12.708 14.482 13 13.954 13.16L15.79 17H14.518L12.838 13.28H11.434V17H10.354ZM11.434 12.308H13.066C13.514 12.308 13.874 12.168 14.146 11.888C14.418 11.6 14.554 11.224 14.554 10.76C14.554 10.288 14.418 9.912 14.146 9.632C13.874 9.352 13.514 9.212 13.066 9.212H11.434V12.308Z" fill="var(--color-text)" id="icon-8388608-text"></path></svg><span>yolo<wbr/>V6<wbr/>To<wbr/>Coco</span></a>
+<a href="modules.html#yoloV7ToCoco" class="tsd-index-link tsd-kind-reference"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>yolo<wbr/>V7<wbr/>To<wbr/>Coco</span></a>
+<a href="modules.html#yoloV8ToCoco" class="tsd-index-link tsd-kind-reference"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>yolo<wbr/>V8<wbr/>To<wbr/>Coco</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">Functions</h3>
+<div class="tsd-index-list"><a href="functions/yoloV4ToCoco.html" class="tsd-index-link tsd-kind-function"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg><span>yolo<wbr/>V4<wbr/>To<wbr/>Coco</span></a>
+<a href="functions/yoloV5ToCoco.html" class="tsd-index-link tsd-kind-function"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>yolo<wbr/>V5<wbr/>To<wbr/>Coco</span></a>
+</div></section></div></details></section></section>
+<section class="tsd-panel-group tsd-member-group">
+<h2>References</h2>
+<section class="tsd-panel tsd-member tsd-kind-reference"><a id="yoloV6ToCoco" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>yolo<wbr/>V6<wbr/>To<wbr/>Coco</span><a href="#yoloV6ToCoco" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></h3>Renames and re-exports <a href="functions/yoloV5ToCoco.html">yoloV5ToCoco</a></section>
+<section class="tsd-panel tsd-member tsd-kind-reference"><a id="yoloV7ToCoco" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>yolo<wbr/>V7<wbr/>To<wbr/>Coco</span><a href="#yoloV7ToCoco" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>Renames and re-exports <a href="functions/yoloV5ToCoco.html">yoloV5ToCoco</a></section>
+<section class="tsd-panel tsd-member tsd-kind-reference"><a id="yoloV8ToCoco" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>yolo<wbr/>V8<wbr/>To<wbr/>Coco</span><a href="#yoloV8ToCoco" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>Renames and re-exports <a href="functions/yoloV5ToCoco.html">yoloV5ToCoco</a></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -81,9 +61,9 @@
 <ul></ul></li></ul></div></details></nav>
 <nav class="tsd-navigation secondary menu-sticky">
 <ul>
-<li class="tsd-kind-reference"><a href="modules.html#yoloV6ToCoco" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF4D82" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-8388608-path"></rect><path d="M10.354 17V8.24H13.066C13.586 8.24 14.042 8.348 14.434 8.564C14.826 8.772 15.13 9.064 15.346 9.44C15.562 9.816 15.67 10.256 15.67 10.76C15.67 11.352 15.514 11.86 15.202 12.284C14.898 12.708 14.482 13 13.954 13.16L15.79 17H14.518L12.838 13.28H11.434V17H10.354ZM11.434 12.308H13.066C13.514 12.308 13.874 12.168 14.146 11.888C14.418 11.6 14.554 11.224 14.554 10.76C14.554 10.288 14.418 9.912 14.146 9.632C13.874 9.352 13.514 9.212 13.066 9.212H11.434V12.308Z" fill="var(--color-text)" id="icon-8388608-text"></path></svg>yolo<wbr/>V6<wbr/>To<wbr/>Coco</a></li>
+<li class="tsd-kind-reference"><a href="modules.html#yoloV6ToCoco" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>yolo<wbr/>V6<wbr/>To<wbr/>Coco</a></li>
 <li class="tsd-kind-reference"><a href="modules.html#yoloV7ToCoco" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>yolo<wbr/>V7<wbr/>To<wbr/>Coco</a></li>
 <li class="tsd-kind-reference"><a href="modules.html#yoloV8ToCoco" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>yolo<wbr/>V8<wbr/>To<wbr/>Coco</a></li>
-<li class="tsd-kind-function"><a href="functions/yoloV4ToCoco.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg>yolo<wbr/>V4<wbr/>To<wbr/>Coco</a></li>
+<li class="tsd-kind-function"><a href="functions/yoloV4ToCoco.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>yolo<wbr/>V4<wbr/>To<wbr/>Coco</a></li>
 <li class="tsd-kind-function"><a href="functions/yoloV5ToCoco.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>yolo<wbr/>V5<wbr/>To<wbr/>Coco</a></li></ul></nav></div></div>
 <div class="overlay"></div><script src="assets/main.js"></script></body></html>
