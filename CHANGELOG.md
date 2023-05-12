@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/santimirandarp/yolo2coco/compare/v1.0.0...v2.0.0) (2023-05-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* simplify and modularise code
+* automatically release documentation
+
+### workflows
+
+* automatically release documentation ([80a3084](https://github.com/santimirandarp/yolo2coco/commit/80a3084950283028d5b7fbe4d8c6ff9544a83e50))
+
+
+### Code Refactoring
+
+* simplify and modularise code ([115bad9](https://github.com/santimirandarp/yolo2coco/commit/115bad996f7f3eff34cfd95836862bf0032f30ed))
+
 ## 1.0.0 (2023-05-12)
 
 
