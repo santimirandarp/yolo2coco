@@ -43,7 +43,7 @@ You can then use `fs.writeFileSync("name.json", JSON.stringify(key))` to save th
 
 [npm-image]: https://img.shields.io/npm/v/yolo2coco.svg
 [npm-url]: https://www.npmjs.com/package/yolo2coco
-[ci-image]: https://github.com/santimirandarp/yolo2coco/workflows/Node.js%20CI/badge.svg?branch=main
+[ci-image]: https://github.com/santimirandarp/yolo2coco/workflows/Node.js%20CI/badge.svg?branch=master
 [ci-url]: https://github.com/santimirandarp/yolo2coco/actions?query=workflow%3A%22Node.js+CI%22
 [codecov-image]: https://img.shields.io/codecov/c/github/santimirandarp/yolo2coco.svg
 [codecov-url]: https://codecov.io/gh/santimirandarp/yolo2coco
