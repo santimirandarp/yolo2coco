@@ -8,7 +8,7 @@ import { makeClassEntry, makeImageEntry } from '../coco_utils';
 
 import { makeAnnotationEntry } from './make-annotation';
 
-export function processImageDirectory(imgDir: string, classes: string[]) {
+export function processDataDirectory(imgDir: string, classes: string[]) {
   let annotationId = 0;
 
   const coco = cocoDatasetFormat();

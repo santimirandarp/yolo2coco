@@ -5,7 +5,7 @@ import YAML from 'yaml';
 
 import { CocoDatasetFormat } from '../coco_default';
 
-import { processImageDirectory } from './process-image-directory';
+import { processDataDirectory } from './process-data-directory';
 /**
  * Converts a yoloV5 dataset to a coco dataset
  * @param inputFile - path to the yoloV5 yaml file
@@ -26,7 +26,7 @@ export function yoloV5ToCoco(pathToYAML: string) {
   for (let [key, imgDir] of Object.entries({ train, val, test })) {
     if (!key || !imgDir) continue;
     imgDir = join(baseDir, imgDir);
-    const coco = processImageDirectory(imgDir, classes);
+    const coco = processDataDirectory(imgDir, classes);
     results[key] = coco;
   }
   return results;
