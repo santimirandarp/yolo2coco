@@ -1,10 +1,10 @@
-import { CocoDatasetFormat } from "../coco_default";
+import { CocoDatasetFormat } from '../coco_default';
 
 export function makeImageEntry(
   imageId: number,
   name: string,
-  size: { width: number; height: number; }
-): CocoDatasetFormat["images"][0]{
+  size: { width: number; height: number },
+): CocoDatasetFormat['images'][0] {
   return {
     id: imageId,
     license: 1,

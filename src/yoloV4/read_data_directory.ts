@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { cocoDatasetFormat } from '../coco_default';
-import { makeClassEntry } from "../entries/make_class_entry";
+import { makeClassEntry } from '../entries/make_class_entry';
 import { allExist } from '../path_exists';
 
 import { parseAnnotationsFile } from './parse_annotations_file';

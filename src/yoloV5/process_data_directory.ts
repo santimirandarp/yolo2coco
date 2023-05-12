@@ -4,8 +4,8 @@ import { basename, join } from 'node:path';
 import sizeOf from 'image-size';
 
 import { cocoDatasetFormat } from '../coco_default';
-import { makeClassEntry } from "../entries/make_class_entry";
-import { makeImageEntry } from "../entries/make_image_entry";
+import { makeClassEntry } from '../entries/make_class_entry';
+import { makeImageEntry } from '../entries/make_image_entry';
 
 import { makeAnnotationEntry } from './make_annotation';
 

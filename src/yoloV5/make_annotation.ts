@@ -1,4 +1,4 @@
-import { defaultAnnotationEntry } from "../entries/default_annotation_entry";
+import { defaultAnnotationEntry } from '../entries/default_annotation_entry';
 
 export function makeAnnotationEntry(
   line: string,

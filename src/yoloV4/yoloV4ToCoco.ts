@@ -4,7 +4,7 @@ import { basename, resolve, join } from 'node:path';
 import glob from 'fast-glob';
 
 import { type CocoDatasetFormat, cocoDatasetFormat } from '../coco_default';
-import { makeClassEntry } from "../entries/make_class_entry";
+import { makeClassEntry } from '../entries/make_class_entry';
 
 import { parseAnnotationsFile } from './parse_annotations_file';
 import { readDataDirectory } from './read_data_directory';

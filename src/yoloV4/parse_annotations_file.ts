@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path';
 import sizeOf from 'image-size';
 
 import { CocoDatasetFormat } from '../coco_default';
-import { makeImageEntry } from "../entries/make_image_entry";
+import { makeImageEntry } from '../entries/make_image_entry';
 
 import { makeAnnotationEntry } from './make_annotation';
 

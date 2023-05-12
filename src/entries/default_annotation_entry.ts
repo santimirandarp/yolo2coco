@@ -1,7 +1,7 @@
 export function defaultAnnotationEntry(
   imageId: number,
   category: number,
-  annotationId: number
+  annotationId: number,
 ) {
   return {
     id: annotationId,

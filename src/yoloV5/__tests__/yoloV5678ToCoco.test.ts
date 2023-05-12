@@ -13,10 +13,7 @@ const testCases = [
   ['yolov7Pytorch/data.yaml'],
 ];
 const cocoTrue = JSON.parse(
-  readFileSync(
-    join(dataPath, '/coco/valid/_annotations.coco.json'),
-    'utf8',
-  ),
+  readFileSync(join(dataPath, '/coco/valid/_annotations.coco.json'), 'utf8'),
 ) as CocoDatasetFormat;
 describe.each(testCases)('test($i)', (path) => {
   const jsonResult = yoloV5ToCoco(join(dataPath, path)).val;

@@ -1,5 +1,6 @@
-import { allExist } from '../path_exists';
 import { join } from 'node:path';
+
+import { allExist } from '../path_exists';
 
 describe('allExist', () => {
   it('should return true if all paths exist', () => {
