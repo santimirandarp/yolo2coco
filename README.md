@@ -5,15 +5,10 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-Basic Yolo-to-Coco conversion tool.
+Basic Yolo-to-Coco conversion tool. Currently it converts the YOLO v4-8.
 
-Currently it converts the YOLO v4,v5,v6,v7 and v8.
-
-
-## Installation
-
-```
-npm i yolo2coco
+```shell
+npm install yolo2coco
 ```
 
 ## Usage
