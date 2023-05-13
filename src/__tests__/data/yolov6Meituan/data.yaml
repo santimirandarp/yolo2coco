@@ -1,0 +1,4 @@
+val: ./images/valid
+
+nc: 3
+names: ['dark logo', 'old logo', 'white logo']

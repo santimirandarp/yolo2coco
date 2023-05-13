@@ -1,5 +1,4 @@
-train: ../train/images
-val: ../valid/images
+val: ./valid/images
 
 nc: 3
 names: ['dark logo', 'old logo', 'white logo']

@@ -5,20 +5,37 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-Basic yolo to coco conversion.
+Basic Yolo-to-Coco conversion tool. Converts YOLO v4-5-6-7-8.
 
-## Installation
-
-`$ npm i yolo2coco`
+```shell
+npm install yolo2coco
+```
 
 ## Usage
 
-```js
-import { myModule } from 'yolo2coco';
+```typescript
+import { yoloV4ToCoco, yoloV5ToCoco/* etc */ } from 'yolo2coco';
 
-const result = myModule(args);
-// result is ...
+const {valid, train, test} = yoloV4ToCoco("./path/to/folder")
+
+// const {val, train, test} = yoloV5ToCoco("./path/to/data.yaml")
+
 ```
+
+## API Basics
+
+<details>
+<summary>See Here</summary>
+
+The converters expect either:
+* a path to the main directory (v4) 
+* or a path to the `data.yaml` (v5-8) file.
+
+They return an object with the keys `{ valid, train, test }` (v4) or `{ val, train, test }` (v5-8) with the Coco format.
+
+You can then use `fs.writeFileSync("name.json", JSON.stringify(key))` to save the files.
+
+</details>
 
 ## License
 
@@ -26,9 +43,9 @@ const result = myModule(args);
 
 [npm-image]: https://img.shields.io/npm/v/yolo2coco.svg
 [npm-url]: https://www.npmjs.com/package/yolo2coco
-[ci-image]: https://github.com/cheminfo/yolo2coco/workflows/Node.js%20CI/badge.svg?branch=main
-[ci-url]: https://github.com/cheminfo/yolo2coco/actions?query=workflow%3A%22Node.js+CI%22
-[codecov-image]: https://img.shields.io/codecov/c/github/cheminfo/yolo2coco.svg
-[codecov-url]: https://codecov.io/gh/cheminfo/yolo2coco
+[ci-image]: https://github.com/santimirandarp/yolo2coco/workflows/Node.js%20CI/badge.svg?branch=master
+[ci-url]: https://github.com/santimirandarp/yolo2coco/actions?query=workflow%3A%22Node.js+CI%22
+[codecov-image]: https://img.shields.io/codecov/c/github/santimirandarp/yolo2coco.svg
+[codecov-url]: https://codecov.io/gh/santimirandarp/yolo2coco
 [download-image]: https://img.shields.io/npm/dm/yolo2coco.svg
 [download-url]: https://www.npmjs.com/package/yolo2coco
