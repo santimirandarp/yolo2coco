@@ -1,23 +1,22 @@
 // test yolov5 to coco conversion
 // similar to the test files yoloV4ToCoco.test.ts
-import { join } from 'node:path';
-import { yoloV5ToCoco } from '../yoloV5/yoloV5ToCoco';
-import { type CocoDatasetFormat } from '../coco_default';
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
+import { type CocoDatasetFormat } from '../../coco_default';
+import { yoloV5ToCoco } from '../yoloV5ToCoco';
+
+const dataPath = join(__dirname, '../../', '__tests__', 'data');
 const testCases = [
-  ['./data/yolov5Pytorch/data.yaml'],
-  ['./data/yolov6Meituan/data.yaml'],
-  ['./data/yolov7Pytorch/data.yaml'],
+  ['yolov5Pytorch/data.yaml'],
+  ['yolov6Meituan/data.yaml'],
+  ['yolov7Pytorch/data.yaml'],
 ];
 const cocoTrue = JSON.parse(
-  readFileSync(
-    join(__dirname, 'data/coco/valid/_annotations.coco.json'),
-    'utf8',
-  ),
+  readFileSync(join(dataPath, '/coco/valid/_annotations.coco.json'), 'utf8'),
 ) as CocoDatasetFormat;
 describe.each(testCases)('test($i)', (path) => {
-  const jsonResult = yoloV5ToCoco(join(__dirname, path)).val;
+  const jsonResult = yoloV5ToCoco(join(dataPath, path)).val;
   test('should return value', () => {
     expect(jsonResult).toBeDefined();
   });

@@ -1,6 +1,4 @@
-train: ./images/train
 val: ./images/valid
-test: ./images/test
 
 nc: 3
 names: ['dark logo', 'old logo', 'white logo']

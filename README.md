@@ -5,32 +5,37 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-The goal is to make some basic data handling easier for the manipulation of bounding box labels.
+Basic Yolo-to-Coco conversion tool. Converts YOLO v4-5-6-7-8.
 
-Especially Yolo formats are normally quite easy to merge, but then many model tools expect 
-Coco format. 
-
-This is a Basic Yolo-to-Coco conversion tool.
-
-## Installation
-
-`npm i yolo2coco`
+```shell
+npm install yolo2coco
+```
 
 ## Usage
 
 ```typescript
-import { yoloV4ToCoco } from 'yolo2coco';
-import { join } from 'path';
+import { yoloV4ToCoco, yoloV5ToCoco/* etc */ } from 'yolo2coco';
 
-// path to the **folder** with the _annotations.txt and _classes.txt files.
-const yoloFolder = join(__dirname,'./train/')
+const {valid, train, test} = yoloV4ToCoco("./path/to/folder")
 
-const cocoJSON = yoloV4ToCoco(yoloFolder)
-/* write out if you need
- * `writeFileSync('coco.json', JSON.stringify(coco))`
- */
+// const {val, train, test} = yoloV5ToCoco("./path/to/data.yaml")
 
 ```
+
+## API Basics
+
+<details>
+<summary>See Here</summary>
+
+The converters expect either:
+* a path to the main directory (v4) 
+* or a path to the `data.yaml` (v5-8) file.
+
+They return an object with the keys `{ valid, train, test }` (v4) or `{ val, train, test }` (v5-8) with the Coco format.
+
+You can then use `fs.writeFileSync("name.json", JSON.stringify(key))` to save the files.
+
+</details>
 
 ## License
 
@@ -38,7 +43,7 @@ const cocoJSON = yoloV4ToCoco(yoloFolder)
 
 [npm-image]: https://img.shields.io/npm/v/yolo2coco.svg
 [npm-url]: https://www.npmjs.com/package/yolo2coco
-[ci-image]: https://github.com/santimirandarp/yolo2coco/workflows/Node.js%20CI/badge.svg?branch=main
+[ci-image]: https://github.com/santimirandarp/yolo2coco/workflows/Node.js%20CI/badge.svg?branch=master
 [ci-url]: https://github.com/santimirandarp/yolo2coco/actions?query=workflow%3A%22Node.js+CI%22
 [codecov-image]: https://img.shields.io/codecov/c/github/santimirandarp/yolo2coco.svg
 [codecov-url]: https://codecov.io/gh/santimirandarp/yolo2coco
