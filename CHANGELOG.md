@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.0.0 (2023-05-13)
+
+
+### Features
+
+* basic yolov4 to coco conversion ([a4739dd](https://github.com/santimirandarp/yolo2coco/commit/a4739dd26d7b29dc510033a4292fec8419aa75b1))
+
+
+### Miscellaneous Chores
+
+* release 3.0.0 ([dd28d21](https://github.com/santimirandarp/yolo2coco/commit/dd28d2154c8c5e71ca0b310c699643f376f03291))
+* release 3.0.0 ([74e3e83](https://github.com/santimirandarp/yolo2coco/commit/74e3e83dece574012a5d802a724b01c88088f5b3))
+
 ## [2.1.0](https://github.com/santimirandarp/yolo2coco/compare/v2.0.1...v2.1.0) (2023-05-12)
 
 
