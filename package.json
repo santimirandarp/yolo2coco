@@ -1,10 +1,14 @@
 {
   "name": "yolo2coco",
-  "version": "2.1.0",
+  "version": "2.0.2",
   "description": "Basic Yolo to Coco conversion",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "keywords": ["Coco dataset", "bounding box", "YOLO to Coco"],
+  "keywords": [
+    "Coco dataset",
+    "bounding box",
+    "YOLO to Coco"
+  ],
   "author": "Santi Miranda",
   "license": "MIT",
   "files": [
