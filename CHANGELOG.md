@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.0.2 (2023-05-13)
+
+
+### Features
+
+* basic yolov4 to coco conversion ([a4739dd](https://github.com/santimirandarp/yolo2coco/commit/a4739dd26d7b29dc510033a4292fec8419aa75b1))
+* implement yolov6 ([6cef2b9](https://github.com/santimirandarp/yolo2coco/commit/6cef2b9c0888c66edba8bee19c4001919adfa231))
+* parse yolov5 ([0fd2ab4](https://github.com/santimirandarp/yolo2coco/commit/0fd2ab4982c9869c0387e897feaa7a22a27b130a))
+
+
+### Bug Fixes
+
+* bug in area yolov5 ([3debfb7](https://github.com/santimirandarp/yolo2coco/commit/3debfb76a1e3a051ba115727c6a0d4077b8fa673))
+* wrong paths ([003d9cd](https://github.com/santimirandarp/yolo2coco/commit/003d9cd2e4be88c76919d7a2f251f0cfbb1e7a63))
+
+
+### Miscellaneous Chores
+
+* release 2.0.2 ([6f252b3](https://github.com/santimirandarp/yolo2coco/commit/6f252b38d1ca31d52167f0c8cbec34c1a0100810))
+
 ## [2.1.0](https://github.com/santimirandarp/yolo2coco/compare/v2.0.1...v2.1.0) (2023-05-12)
 
 
