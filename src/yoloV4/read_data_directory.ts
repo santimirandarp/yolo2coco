@@ -19,7 +19,7 @@ export function readDataDirectory(directoryPath: string) {
   const coco = cocoDatasetFormat();
 
   // add the classes to the coco object
-  const classes = readFileSync(classesPath, 'utf8').split('\n');
+  const classes = readFileSync(classesPath, 'utf8').trim().split('\n');
   classes.forEach((name, id) => {
     coco.categories.push(makeClassEntry(name, id));
   });

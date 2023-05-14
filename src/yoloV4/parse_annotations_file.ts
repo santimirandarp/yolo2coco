@@ -13,7 +13,7 @@ export function parseAnnotationsFile(
   annotationsPath: string,
   annotationId: number,
 ) {
-  const annotationLines = readFileSync(annotationsPath, 'utf8').split('\n');
+  const annotationLines = readFileSync(annotationsPath, 'utf8').trim().split('\n');
 
   annotationLines.forEach((line, imageId) => {
     const [filename, ...annotations] = line.trim().split(' ');

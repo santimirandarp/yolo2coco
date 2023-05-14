@@ -11,7 +11,10 @@ import { readDataDirectory } from './read_data_directory';
 
 /**
  * Converts YoloV4 labels to COCO labels
- * @param baseDir - path to the directory containing the train, valid, and test directories
+ * @param baseDirectoryPath - path to the directory containing the train, valid, ..., directories
+ * @param merge - whether to merge all the data directories into one dataset
+ * @returns - a dictionary of CocoDatasetFormat objects, with the keys being the names of the data directories
+ * In the case of `merge = true`, the key is `'all'`
  */
 export function yoloV4ToCoco(baseDirectoryPath: string, merge = false) {
   const results: { [key: string]: CocoDatasetFormat } = {};
