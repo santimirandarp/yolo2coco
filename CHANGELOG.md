@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/santimirandarp/yolo2coco/compare/v3.0.0...v3.1.0) (2023-05-14)
+
+
+### Features
+
+* trim in case there are extra spaces ([b141eab](https://github.com/santimirandarp/yolo2coco/commit/b141eabbee9fa30775a7aebd95daf5a5287d75c0))
+
 ## 3.0.0 (2023-05-13)
 
 
