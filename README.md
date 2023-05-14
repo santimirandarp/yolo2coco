@@ -14,6 +14,7 @@ npm install yolo2coco
 ## Usage
 
 ```typescript
+
 import { yoloV4ToCoco, yoloV5ToCoco/* etc */ } from 'yolo2coco';
 
 const {valid, train, test} = yoloV4ToCoco("./path/to/folder")
@@ -22,15 +23,9 @@ const {valid, train, test} = yoloV4ToCoco("./path/to/folder")
 
 ```
 
-## Details
+You can use `fs.writeFileSync("out.json", JSON.stringify(resultX))` to write out.
 
-They return an object with the keys `{ valid, train, test }` (v4) or `{ val, train, test }` (v5-8) with the Coco format.
-
-If you pass the `merge` option to **yoloV4** it can also merge many directories into one.
- 
-You can use `fs.writeFileSync("name.json", JSON.stringify(result, null, indentation))` to write out.
-
-## License
+-------------------
 
 [MIT](./LICENSE)
 
