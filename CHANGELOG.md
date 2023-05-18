@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.2](https://github.com/santimirandarp/yolo2coco/compare/v3.1.1...v3.1.2) (2023-05-18)
+
+
+### Bug Fixes
+
+* now previous in image ID bug is fixed ([f84241a](https://github.com/santimirandarp/yolo2coco/commit/f84241a01783da1379b847ef26644504917bcc1a))
+
 ## [3.1.1](https://github.com/santimirandarp/yolo2coco/compare/v3.1.0...v3.1.1) (2023-05-18)
 
 
