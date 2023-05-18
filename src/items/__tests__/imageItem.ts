@@ -1,4 +1,4 @@
-import { makeImageEntry } from '../../../items/imageItem';
+import { makeImageItem } from '../imageItem';
 
 describe('makeImageEntry', () => {
   it('should return the correct object', () => {
@@ -15,7 +15,7 @@ describe('makeImageEntry', () => {
       coco_url: '',
       date_captured: '',
     };
-    const actual = makeImageEntry(imageId, imageName, dimensions);
+    const actual = makeImageItem(imageId, imageName, dimensions);
     expect(actual).toStrictEqual(expected);
   });
 });
