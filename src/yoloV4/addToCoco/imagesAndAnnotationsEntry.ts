@@ -5,7 +5,6 @@ import sizeOf from 'image-size';
 
 import { CocoDatasetFormat } from '../../coco_default';
 import { makeImageItem } from '../../items/imageItem';
-
 import { makeAnnotationEntry } from '../items/annotationItem';
 
 export async function addImagesAndAnnotationsEntry(

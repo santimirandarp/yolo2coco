@@ -1,4 +1,5 @@
 import { CocoDatasetFormat } from '../../coco_default';
+
 import { addClasses } from './classesEntry';
 import { addImagesAndAnnotationsEntry } from './imagesAndAnnotationsEntry';
 

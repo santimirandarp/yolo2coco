@@ -1,9 +1,9 @@
 import { basename, dirname } from 'node:path';
 
 import { type CocoDatasetFormat, cocoDatasetFormat } from '../coco_default';
-import { annotationSearch } from './annotationSearch';
 
 import { addAllEntries } from './addToCoco/addAllEntries';
+import { annotationSearch } from './annotationSearch';
 
 /**
  * Converts YoloV4 labels to COCO labels

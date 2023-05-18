@@ -1,4 +1,4 @@
-import { defaultAnnotationItem } from "../../items/defaultAnnotationItem";
+import { defaultAnnotationItem } from '../../items/defaultAnnotationItem';
 
 export function makeAnnotationEntry(
   line: string,

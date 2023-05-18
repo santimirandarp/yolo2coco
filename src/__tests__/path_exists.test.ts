@@ -7,8 +7,8 @@ describe('allExist', () => {
     const paths = [join(__dirname, 'path_exists.test.ts')];
     expect(await pathExistOrThrow(paths)).toBeUndefined();
   });
-  it('should return false if one path does not exist', async() => {
+  it('should return false if one path does not exist', async () => {
     const paths = [join(__dirname, 'path_exists.ts')];
-    expect(pathExistOrThrow(paths)).rejects.toThrow();
+    await expect(pathExistOrThrow(paths)).rejects.toThrow();
   });
 });

@@ -3,7 +3,7 @@
  * @param imageId - id of the image, given by the iteration process.
  * @param yoloCategory - category of the annotation.
  * @param annotationId - id of the annotation, given by the iteration process.
- * @returns 
+ * @returns
  */
 export function defaultAnnotationItem(
   imageId: number,

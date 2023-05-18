@@ -2,10 +2,10 @@ import { CocoDatasetFormat } from '../coco_default';
 
 /**
  * Creates an image item (item of coco.images array)
- * @param imageId 
- * @param name 
- * @param size 
- * @returns 
+ * @param imageId
+ * @param name
+ * @param size
+ * @returns
  */
 export function makeImageItem(
   imageId: number,
