@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/santimirandarp/yolo2coco/compare/v3.1.2...v4.0.0) (2023-05-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* use async code
+
+### Code Refactoring
+
+* use async code ([a01bd45](https://github.com/santimirandarp/yolo2coco/commit/a01bd45124beaa0fdee69ef920776fd868f2be8d))
+
 ## [3.1.2](https://github.com/santimirandarp/yolo2coco/compare/v3.1.1...v3.1.2) (2023-05-18)
 
 
