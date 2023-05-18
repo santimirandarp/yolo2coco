@@ -8,9 +8,9 @@ const testPath = join(__dirname, '../../', '__tests__', 'data');
 const yoloPath = join(testPath, 'yolov4Pytorch');
 const cocoPath = join(testPath, 'coco/valid/_annotations.coco.json');
 
-describe('yolo2coco', () => {
-  const { all } = yoloV4ToCoco(yoloPath, true);
-  const allSplitted = yoloV4ToCoco(yoloPath, false);
+describe('yolo2coco', async () => {
+  const { all } = await yoloV4ToCoco(yoloPath, true);
+  const allSplitted = await yoloV4ToCoco(yoloPath, false);
   const jsonResult = allSplitted.valid;
   const cocoTrue = JSON.parse(
     readFileSync(cocoPath, 'utf8'),

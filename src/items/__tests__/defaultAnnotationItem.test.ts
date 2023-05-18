@@ -1,4 +1,4 @@
-import { defaultAnnotationEntry } from '../default_annotation_entry';
+import { defaultAnnotationItem } from '../defaultAnnotationItem';
 
 describe('defaultAnnotationEntry', () => {
   it('should return the correct object', () => {
@@ -14,7 +14,7 @@ describe('defaultAnnotationEntry', () => {
       bbox: [0, 0, 0, 0],
       iscrowd: 0,
     };
-    const actual = defaultAnnotationEntry(imageId, yoloCategory, annotationId);
+    const actual = defaultAnnotationItem(imageId, yoloCategory, annotationId);
     expect(actual).toStrictEqual(expected);
   });
 });

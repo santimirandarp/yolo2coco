@@ -15,8 +15,8 @@ const testCases = [
 const cocoTrue = JSON.parse(
   readFileSync(join(dataPath, '/coco/valid/_annotations.coco.json'), 'utf8'),
 ) as CocoDatasetFormat;
-describe.each(testCases)('test($i)', (path) => {
-  const jsonResult = yoloV5ToCoco(join(dataPath, path)).val;
+describe.each(testCases)('test($i)', async (path) => {
+  const jsonResult = (await yoloV5ToCoco(join(dataPath, path))).val;
   test('should return value', () => {
     expect(jsonResult).toBeDefined();
   });

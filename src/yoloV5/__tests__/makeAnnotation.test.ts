@@ -1,4 +1,4 @@
-import { makeAnnotationEntry } from '../make_annotation';
+import { makeAnnotationEntry } from '../makeAnnotation';
 
 describe('makeAnnotationEntry', () => {
   it('should return the correct object', () => {

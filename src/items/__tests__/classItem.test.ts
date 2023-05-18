@@ -1,4 +1,4 @@
-import { makeClassEntry } from '../make_class_entry';
+import { makeClassItem } from '../classItem';
 
 describe('makeClassEntry', () => {
   it('should return the correct object', () => {
@@ -9,7 +9,7 @@ describe('makeClassEntry', () => {
       name: name.trim(),
       supercategory: 'none',
     };
-    const actual = makeClassEntry(name, id);
+    const actual = makeClassItem(name, id);
     expect(actual).toStrictEqual(expected);
   });
 });

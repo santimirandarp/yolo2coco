@@ -1,4 +1,4 @@
-import { makeImageEntry } from '../make_image_entry';
+import { makeImageEntry } from '../../../items/imageItem';
 
 describe('makeImageEntry', () => {
   it('should return the correct object', () => {
