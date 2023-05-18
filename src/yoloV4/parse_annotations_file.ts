@@ -42,5 +42,5 @@ export function parseAnnotationsFile(
     }
     imageId += 1;
   });
-  return { coco, imageId };
+  return imageId;
 }

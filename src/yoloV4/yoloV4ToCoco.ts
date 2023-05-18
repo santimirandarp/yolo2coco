@@ -48,9 +48,10 @@ export function yoloV4ToCoco(baseDirectoryPath: string, merge = false) {
     let annotationId = 0;
     let imageId = 0;
     for (const file of annotationFiles) {
-      parseAnnotationsFile(coco, file, annotationId, imageId);
+      imageId = parseAnnotationsFile(coco, file, annotationId, imageId);
       annotationId += 1;
     }
+
     return { all: coco };
   }
 }
