@@ -8,14 +8,14 @@ describe('annotationSearch', () => {
       __dirname,
       '../../__tests__/data/yolov4Pytorch/',
     );
-    const test = join(baseDirectoryPath, 'test', '_annotations.txt')
-    const valid = join(baseDirectoryPath, 'valid', '_annotations.txt')
-    const train = join(baseDirectoryPath, 'train', '_annotations.txt')
-    
+    const test = join(baseDirectoryPath, 'test', '_annotations.txt');
+    const valid = join(baseDirectoryPath, 'valid', '_annotations.txt');
+    const train = join(baseDirectoryPath, 'train', '_annotations.txt');
+
     const result = await annotationSearch(baseDirectoryPath);
     expect(result).toContain(test);
     expect(result).toContain(valid);
     expect(result).toContain(train);
-    expect(result).toHaveLength(3)
+    expect(result).toHaveLength(3);
   });
 });
