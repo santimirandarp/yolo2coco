@@ -12,12 +12,13 @@ export function parseAnnotationsFile(
   coco: CocoDatasetFormat,
   annotationsPath: string,
   annotationId: number,
+  imageId = 0,
 ) {
   const annotationLines = readFileSync(annotationsPath, 'utf8')
     .trim()
     .split('\n');
 
-  annotationLines.forEach((line, imageId) => {
+  annotationLines.forEach((line) => {
     const [filename, ...annotations] = line.trim().split(' ');
 
     const imagePath = join(dirname(annotationsPath), filename);
@@ -39,6 +40,7 @@ export function parseAnnotationsFile(
       coco.annotations.push(newAnnotation);
       annotationId += 1;
     }
+    imageId += 1;
   });
-  return coco;
+  return { coco, imageId };
 }

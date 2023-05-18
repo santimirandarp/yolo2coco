@@ -7,6 +7,7 @@ import { yoloV4ToCoco } from '../yoloV4ToCoco';
 const testPath = join(__dirname, '../../', '__tests__', 'data');
 const yoloPath = join(testPath, 'yolov4Pytorch');
 const cocoPath = join(testPath, 'coco/valid/_annotations.coco.json');
+
 describe('yolo2coco', () => {
   const { all } = yoloV4ToCoco(yoloPath, true);
   const allSplitted = yoloV4ToCoco(yoloPath, false);
@@ -14,7 +15,6 @@ describe('yolo2coco', () => {
   const cocoTrue = JSON.parse(
     readFileSync(cocoPath, 'utf8'),
   ) as CocoDatasetFormat;
-
   test('all v splitted', () => {
     expect(all.images).toHaveLength(
       allSplitted.train.images.length +
