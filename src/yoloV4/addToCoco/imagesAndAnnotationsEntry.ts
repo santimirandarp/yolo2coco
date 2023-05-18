@@ -1,24 +1,25 @@
-import { readFileSync } from 'node:fs';
+import { open } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
 import sizeOf from 'image-size';
 
-import { CocoDatasetFormat } from '../coco_default';
-import { makeImageEntry } from '../entries/make_image_entry';
+import { CocoDatasetFormat } from '../../coco_default';
+import { makeImageItem } from '../../items/imageItem';
 
-import { makeAnnotationEntry } from './make_annotation';
+import { makeAnnotationEntry } from '../items/annotationItem';
 
-export function parseAnnotationsFile(
+export async function addImagesAndAnnotationsEntry(
   coco: CocoDatasetFormat,
   annotationsPath: string,
-  annotationId: number,
-  imageId = 0,
+  annotationId?: number,
+  imageId?: number,
 ) {
-  const annotationLines = readFileSync(annotationsPath, 'utf8')
-    .trim()
-    .split('\n');
+  if (!annotationId) annotationId = 0;
+  if (!imageId) imageId = 0;
 
-  annotationLines.forEach((line) => {
+  const annotationLines = (await open(annotationsPath, 'r')).readLines();
+
+  for await (const line of annotationLines) {
     const [filename, ...annotations] = line.trim().split(' ');
 
     const imagePath = join(dirname(annotationsPath), filename);
@@ -28,7 +29,7 @@ export function parseAnnotationsFile(
       throw new Error(`Could not get image size for ${imagePath}`);
     }
 
-    const entry = makeImageEntry(imageId, filename, { width, height });
+    const entry = makeImageItem(imageId, filename, { width, height });
     coco.images.push(entry);
 
     for (const annotation of annotations) {
@@ -41,6 +42,6 @@ export function parseAnnotationsFile(
       annotationId += 1;
     }
     imageId += 1;
-  });
+  }
   return imageId;
 }

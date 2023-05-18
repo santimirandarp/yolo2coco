@@ -1,4 +1,4 @@
-import { defaultAnnotationEntry } from '../entries/default_annotation_entry';
+import { defaultAnnotationItem } from "../../items/defaultAnnotationItem";
 
 export function makeAnnotationEntry(
   line: string,
@@ -10,7 +10,7 @@ export function makeAnnotationEntry(
   const h = y2 - y1;
 
   return {
-    ...defaultAnnotationEntry(imageId, yoloCategory, annotationId),
+    ...defaultAnnotationItem(imageId, yoloCategory, annotationId),
     bbox: [x1, y1, w, h],
     area: w * h,
   };

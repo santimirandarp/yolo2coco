@@ -1,16 +1,16 @@
-import { readFileSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 import { resolve, dirname, join } from 'node:path';
 
 import YAML from 'yaml';
 
 import { CocoDatasetFormat } from '../coco_default';
 
-import { processDataDirectory } from './process_data_directory';
+import { processDataDirectory } from './processDataDirectory';
 /**
  * Converts a yoloV5 dataset to a coco dataset
  * @param inputFile - path to the yoloV5 yaml file
  */
-export function yoloV5ToCoco(pathToYAML: string) {
+export async function yoloV5ToCoco(pathToYAML: string) {
   // get the yaml.keys
   pathToYAML = resolve(pathToYAML);
   const {
@@ -18,7 +18,7 @@ export function yoloV5ToCoco(pathToYAML: string) {
     val,
     test,
     names: classes,
-  } = YAML.parse(readFileSync(pathToYAML, 'utf8'));
+  } = YAML.parse(await readFile(pathToYAML, 'utf8'));
 
   const results: { [key: string]: CocoDatasetFormat } = {};
   const baseDir = dirname(pathToYAML);
@@ -26,7 +26,7 @@ export function yoloV5ToCoco(pathToYAML: string) {
   for (let [key, imgDir] of Object.entries({ train, val, test })) {
     if (!key || !imgDir) continue;
     imgDir = join(baseDir, imgDir);
-    const coco = processDataDirectory(imgDir, classes);
+    const coco = await processDataDirectory(imgDir, classes);
     results[key] = coco;
   }
   return results;

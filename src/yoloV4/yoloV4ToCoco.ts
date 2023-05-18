@@ -1,57 +1,37 @@
-import { readdirSync, readFileSync } from 'node:fs';
-import { basename, join } from 'node:path';
-
-import glob from 'fast-glob';
+import { basename, dirname } from 'node:path';
 
 import { type CocoDatasetFormat, cocoDatasetFormat } from '../coco_default';
-import { makeClassEntry } from '../entries/make_class_entry';
+import { annotationSearch } from './annotationSearch';
 
-import { parseAnnotationsFile } from './parse_annotations_file';
-import { readDataDirectory } from './read_data_directory';
+import { addAllEntries } from './addToCoco/addAllEntries';
 
 /**
  * Converts YoloV4 labels to COCO labels
- * @param baseDirectoryPath - path to the directory containing the train, valid, ..., directories
+ * @param baseDirectoryPath - starts recursive search from this directory.
  * @param merge - whether to merge all the data directories into one dataset
- * @returns - a dictionary of CocoDatasetFormat objects, with the keys being the names of the data directories
- * In the case of `merge = true`, the key is `'all'`
+ * @returns - a dictionary of CocoDatasetFormat objects.
+ * When `merge = true`, the key is `'all'`
  */
-export function yoloV4ToCoco(baseDirectoryPath: string, merge = false) {
+export async function yoloV4ToCoco(baseDirectoryPath: string, merge = false) {
   const results: { [key: string]: CocoDatasetFormat } = {};
+  const annotationPaths = await annotationSearch(baseDirectoryPath);
 
   if (!merge) {
-    const dataDirectories = readdirSync(baseDirectoryPath, {
-      withFileTypes: true,
-    })
-      .filter((d) => d.isDirectory())
-      .map((x) => join(baseDirectoryPath, x.name));
-
-    for (const currentDir of dataDirectories) {
-      const coco = readDataDirectory(currentDir);
-      if (coco) results[basename(currentDir)] = coco;
+    for (const annotationPath of annotationPaths) {
+      const coco = cocoDatasetFormat();
+      await addAllEntries(coco, annotationPath);
+      const key = basename(dirname(annotationPath));
+      results[key] = coco;
     }
     return results;
   } else {
-    const coco = cocoDatasetFormat();
-    const allPaths = glob.sync(
-      `${baseDirectoryPath}/**/{_annotations,_classes}.txt`,
-    );
-    const classPath = allPaths.filter((x) => x.endsWith('_classes.txt'))[0];
-
-    const classes = readFileSync(classPath, 'utf8').split('\n');
-    classes.forEach((name, id) => {
-      coco.categories.push(makeClassEntry(name, id));
-    });
-    const annotationFiles = allPaths.filter((x) =>
-      x.endsWith('_annotations.txt'),
-    );
     let annotationId = 0;
     let imageId = 0;
-    for (const file of annotationFiles) {
-      imageId = parseAnnotationsFile(coco, file, annotationId, imageId);
-      annotationId += 1;
-    }
+    const coco = cocoDatasetFormat();
 
+    for (const annotationPath of annotationPaths) {
+      await addAllEntries(coco, annotationPath, annotationId, imageId);
+    }
     return { all: coco };
   }
 }

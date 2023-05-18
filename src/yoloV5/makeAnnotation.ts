@@ -1,4 +1,4 @@
-import { defaultAnnotationEntry } from '../entries/default_annotation_entry';
+import { defaultAnnotationItem } from "../items/defaultAnnotationItem";
 
 export function makeAnnotationEntry(
   line: string,
@@ -15,7 +15,7 @@ export function makeAnnotationEntry(
   const scaledHeight = h * naturalHeight;
 
   return {
-    ...defaultAnnotationEntry(imageId, yoloCategory, annotationId),
+    ...defaultAnnotationItem(imageId, yoloCategory, annotationId),
     bbox: [x1, y1, scaledWidth, scaledHeight],
     area: scaledWidth * scaledHeight,
   };

@@ -17,9 +17,10 @@ npm install yolo2coco
 
 import { yoloV4ToCoco, yoloV5ToCoco/* etc */ } from 'yolo2coco';
 
-const {valid, train, test} = yoloV4ToCoco("./path/to/folder")
 
-// const {val, train, test} = yoloV5ToCoco("./path/to/data.yaml")
+yoloV4ToCoco("./path/to/folder").then(r=>console.log(Object.keys(r))
+
+//yoloV5ToCoco("./path/to/data.yaml").then(r=>console.log(Object.keys(r))
 
 ```
 

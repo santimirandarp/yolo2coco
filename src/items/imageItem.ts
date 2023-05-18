@@ -1,6 +1,13 @@
 import { CocoDatasetFormat } from '../coco_default';
 
-export function makeImageEntry(
+/**
+ * Creates an image item (item of coco.images array)
+ * @param imageId 
+ * @param name 
+ * @param size 
+ * @returns 
+ */
+export function makeImageItem(
   imageId: number,
   name: string,
   size: { width: number; height: number },
