@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/santimirandarp/yolo2coco/compare/v3.1.0...v3.1.1) (2023-05-18)
+
+
+### Bug Fixes
+
+* bug in image index ([138aff9](https://github.com/santimirandarp/yolo2coco/commit/138aff97576402376d42b1c72d7b18b8826f62a9))
+
 ## [3.1.0](https://github.com/santimirandarp/yolo2coco/compare/v3.0.0...v3.1.0) (2023-05-14)
 
 
