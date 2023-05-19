@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/santimirandarp/yolo2coco/compare/v4.0.0...v4.0.1) (2023-05-19)
+
+
+### Bug Fixes
+
+* image index and annotation index ([7bd4016](https://github.com/santimirandarp/yolo2coco/commit/7bd40160beaee2926f41b8c3c652178fe6f2fe13))
+
 ## [4.0.0](https://github.com/santimirandarp/yolo2coco/compare/v3.1.2...v4.0.0) (2023-05-18)
 
 
