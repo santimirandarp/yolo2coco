@@ -30,7 +30,12 @@ export async function yoloV4ToCoco(baseDirectoryPath: string, merge = false) {
     const coco = cocoDatasetFormat();
 
     for (const annotationPath of annotationPaths) {
-      await addAllEntries(coco, annotationPath, annotationId, imageId);
+      [, { imageId, annotationId }] = await addAllEntries(
+        coco,
+        annotationPath,
+        annotationId,
+        imageId,
+      );
     }
     return { all: coco };
   }

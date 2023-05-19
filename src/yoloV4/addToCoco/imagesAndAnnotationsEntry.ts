@@ -42,5 +42,5 @@ export async function addImagesAndAnnotationsEntry(
     }
     imageId += 1;
   }
-  return imageId;
+  return { imageId, annotationId };
 }
