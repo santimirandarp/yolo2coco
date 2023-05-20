@@ -1,5 +1,6 @@
-import { open } from 'node:fs/promises';
+import { createReadStream } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { createInterface } from 'node:readline';
 
 import sizeOf from 'image-size';
 
@@ -25,7 +26,10 @@ export async function addImagesAndAnnotationsItem(
   if (!annotationId) annotationId = 0;
   if (!imageId) imageId = 0;
 
-  const annotationLines = (await open(annotationsPath, 'r')).readLines();
+  const annotationLines = createInterface({
+    input: createReadStream(annotationsPath, 'utf-8'),
+    crlfDelay: Infinity,
+  });
 
   for await (const line of annotationLines) {
     const [filename, ...annotations] = line.trim().split(' ');

@@ -1,5 +1,7 @@
-import { opendir, open } from 'node:fs/promises';
+import { createReadStream } from 'node:fs';
+import { opendir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { createInterface } from 'node:readline';
 
 import sizeOf from 'image-size';
 
@@ -34,7 +36,10 @@ export async function processDataDirectory(imgDir: string, classes: string[]) {
     const labelFile = imagePath
       .replace('/images/', '/labels/')
       .replace(/\.[^/.]+$/, '.txt');
-    const annotationLines = (await open(labelFile, 'r')).readLines();
+    const annotationLines = createInterface({
+      input: createReadStream(labelFile, 'utf-8'),
+      crlfDelay: Infinity,
+    });
 
     for await (const line of annotationLines) {
       const annotationEntry = makeAnnotationEntry(
