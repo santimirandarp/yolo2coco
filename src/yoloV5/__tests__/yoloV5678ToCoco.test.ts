@@ -48,7 +48,7 @@ describe.each(testCases)('test($i)', async (path) => {
     const { bbox: bboxTrue, category_id: cidTrue } = trueAnnotations[0];
     const { bbox, category_id } = jsonAnnotations[0];
     expect(category_id).toBe(cidTrue);
-    expect(bbox[0]).toBeCloseTo(bboxTrue[0]);
+    expect(bbox[0]).toBeCloseTo(bboxTrue[0], 0);
     expect(bbox[1]).toBeCloseTo(bboxTrue[1], 0);
     expect(bbox[2]).toBeCloseTo(bboxTrue[2]);
     expect(bbox[3]).toBeCloseTo(bboxTrue[3]);

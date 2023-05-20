@@ -2,20 +2,18 @@ import { join } from 'node:path';
 
 import { annotationSearch } from '../annotationSearch';
 
-describe('annotationSearch', () => {
-  it('should return an array of paths to annotation files', async () => {
-    const baseDirectoryPath = join(
-      __dirname,
-      '../../__tests__/data/yolov4Pytorch/',
-    );
-    const test = join(baseDirectoryPath, 'test', '_annotations.txt');
-    const valid = join(baseDirectoryPath, 'valid', '_annotations.txt');
-    const train = join(baseDirectoryPath, 'train', '_annotations.txt');
+const yoloV4Pytorch = join(__dirname, '../../__tests__/data/yolov4Pytorch/');
 
-    const result = await annotationSearch(baseDirectoryPath);
-    expect(result).toContain(test);
-    expect(result).toContain(valid);
-    expect(result).toContain(train);
-    expect(result).toHaveLength(3);
-  });
+const testDir = join(yoloV4Pytorch, 'test', '_annotations.txt');
+const valid = join(yoloV4Pytorch, 'valid', '_annotations.txt');
+const train = join(yoloV4Pytorch, 'train', '_annotations.txt');
+
+it('test the paths found by the search function', async () => {
+  const result = await annotationSearch(yoloV4Pytorch);
+  [testDir, valid, train].forEach(
+    (item: string) => {
+      expect(result).toContain(item);
+    },
+  );
+  expect(result).toHaveLength(3);
 });
