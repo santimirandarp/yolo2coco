@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/santimirandarp/yolo2coco/compare/v4.0.2...v4.1.0) (2023-05-20)
+
+
+### Features
+
+* createInterface in place of readlines to support more Node versions ([96cd293](https://github.com/santimirandarp/yolo2coco/commit/96cd293c17104b930f8242e554c04bbb96810377))
+
 ## [4.0.2](https://github.com/santimirandarp/yolo2coco/compare/v4.0.1...v4.0.2) (2023-05-20)
 
 
