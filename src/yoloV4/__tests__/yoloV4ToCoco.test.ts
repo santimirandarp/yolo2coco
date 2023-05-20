@@ -46,7 +46,6 @@ it('yolo2coco', async () => {
     expect(valid.categories).toHaveLength(cocoTrue.categories.length - 1);
   });
   test('compare image and annotation and category id', () => {
-    
     const { file_name, width, height, id } = valid.images[0];
     const trueImage = cocoTrue.images.filter((img) => {
       return img.file_name === file_name;
