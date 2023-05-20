@@ -10,48 +10,55 @@ const cocoPath = join(testPath, 'coco/valid/_annotations.coco.json');
 
 it('yolo2coco', async () => {
   const { all } = await yoloV4ToCoco(yoloPath, true);
-  const allSplitted = await yoloV4ToCoco(yoloPath, false);
-  const jsonResult = allSplitted.valid;
+  const { train, valid, test: testKey } = await yoloV4ToCoco(yoloPath, false);
   const cocoTrue = JSON.parse(
     readFileSync(cocoPath, 'utf8'),
   ) as CocoDatasetFormat;
-  test('all v splitted', () => {
+
+  test('Merged coco versus separate-directory coco', () => {
     expect(all.images).toHaveLength(
-      allSplitted.train.images.length +
-        allSplitted.valid.images.length +
-        allSplitted.test.images.length,
+      train.images.length + valid.images.length + testKey.images.length,
     );
     expect(all.annotations).toHaveLength(
-      allSplitted.train.annotations.length +
-        allSplitted.valid.annotations.length +
-        allSplitted.test.annotations.length,
+      train.annotations.length +
+        valid.annotations.length +
+        testKey.annotations.length,
     );
   });
-  test('Number of keys, images, and annotations', () => {
-    expect(Object.keys(jsonResult)).toHaveLength(Object.keys(cocoTrue).length);
-    expect(jsonResult.images).toHaveLength(cocoTrue.images.length);
-    expect(jsonResult.annotations).toHaveLength(cocoTrue.annotations.length);
+  test('IDS assigned to Images and Annotations.', () => {
+    expect(all.images[all.images.length - 1].id).toBe(
+      cocoTrue.images[cocoTrue.images.length - 1].id,
+    );
+    expect(all.annotations[all.annotations.length - 1].id).toBe(
+      cocoTrue.annotations[cocoTrue.annotations.length - 1].id,
+    );
+  });
+  test('Number of top-level keys, images, and annotations', () => {
+    expect(Object.keys(valid)).toHaveLength(Object.keys(cocoTrue).length);
+  });
+  test('Number of images', () => {
+    expect(valid.images).toHaveLength(cocoTrue.images.length);
+  });
+  test('Number of annotations', () => {
+    expect(valid.annotations).toHaveLength(cocoTrue.annotations.length);
   });
   test('should have the same number of categories', () => {
-    // I do not think we need the class they add, could be a bug.
-    expect(jsonResult.categories).toHaveLength(cocoTrue.categories.length - 1);
+    expect(valid.categories).toHaveLength(cocoTrue.categories.length - 1);
   });
   test('compare image and annotation and category id', () => {
-    // compare an image
-    const { file_name, width, height, id } = jsonResult.images[0];
+    
+    const { file_name, width, height, id } = valid.images[0];
     const trueImage = cocoTrue.images.filter((img) => {
       return img.file_name === file_name;
     });
     expect(trueImage[0]).toMatchObject({ file_name, width, height });
 
-    // compare an annotation
     const trueAnnotations = cocoTrue.annotations.filter(
       (ann) => ann.image_id === trueImage[0].id,
     );
-    const jsonAnnotations = jsonResult.annotations.filter(
+    const jsonAnnotations = valid.annotations.filter(
       (ann) => ann.image_id === id,
     );
-
     const { bbox: bboxTrue, category_id: cidTrue } = trueAnnotations[0];
     const { bbox, category_id } = jsonAnnotations[0];
     expect(category_id).toBe(cidTrue);
