@@ -11,5 +11,4 @@ describe('allExist', () => {
     const paths = [join(__dirname, 'pathExists.ts')];
     await expect(pathExistOrThrow(paths)).rejects.toThrow();
   });
-  
-})
+});

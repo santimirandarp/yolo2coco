@@ -10,10 +10,8 @@ const train = join(yoloV4Pytorch, 'train', '_annotations.txt');
 
 it('test the paths found by the search function', async () => {
   const result = await annotationSearch(yoloV4Pytorch);
-  [testDir, valid, train].forEach(
-    (item: string) => {
-      expect(result).toContain(item);
-    },
-  );
+  [testDir, valid, train].forEach((item: string) => {
+    expect(result).toContain(item);
+  });
   expect(result).toHaveLength(3);
 });
