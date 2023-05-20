@@ -1,5 +1,13 @@
 import { defaultAnnotationItem } from '../items/defaultAnnotationItem';
 
+/**
+ * Creates a `coco.annotations` item from a line of a YOLOv5 annotation file.
+ * @param line - a line from a YOLOv5 annotation file.
+ * @param size - the size of the image.
+ * @param imageId - the image id.
+ * @param annotationId - the annotation id.
+ * @returns - a `coco.annotations` item.
+ */
 export function makeAnnotationEntry(
   line: string,
   size: { width: number; height: number },
@@ -15,7 +23,7 @@ export function makeAnnotationEntry(
   const scaledHeight = h * naturalHeight;
 
   return {
-    ...defaultAnnotationItem(imageId, yoloCategory, annotationId),
+    ...defaultAnnotationItem(imageId, annotationId, yoloCategory),
     bbox: [x1, y1, scaledWidth, scaledHeight],
     area: scaledWidth * scaledHeight,
   };

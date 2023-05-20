@@ -5,9 +5,18 @@ import sizeOf from 'image-size';
 
 import { CocoDatasetFormat } from '../../coco_default';
 import { makeImageItem } from '../../items/imageItem';
-import { makeAnnotationEntry } from '../items/annotationItem';
+import { makeAnnotationItem } from '../items/annotationItem';
 
-export async function addImagesAndAnnotationsEntry(
+/**
+ * Adds all entries (annotations and images) to the COCO dataset. The may be
+ * multiple annotations for each image.
+ * @param coco - the coco object we are adding items to.
+ * @param annotationsPath - the path to the annotations file.
+ * @param annotationId - the annotation id to start from.
+ * @param imageId - the image id to start from.
+ * @returns - a tuple with the annotationId and imageId.
+ */
+export async function addImagesAndAnnotationsItem(
   coco: CocoDatasetFormat,
   annotationsPath: string,
   annotationId?: number,
@@ -32,7 +41,7 @@ export async function addImagesAndAnnotationsEntry(
     coco.images.push(entry);
 
     for (const annotation of annotations) {
-      const newAnnotation = makeAnnotationEntry(
+      const newAnnotation = makeAnnotationItem(
         annotation,
         imageId,
         annotationId,

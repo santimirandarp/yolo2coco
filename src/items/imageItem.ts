@@ -1,17 +1,17 @@
 import { CocoDatasetFormat } from '../coco_default';
 
 /**
- * Creates an image item (item of coco.images array)
- * @param imageId
- * @param name
- * @param size
- * @returns
+ * Creates a `coco.images` array item.
+ * @param imageId - the image id
+ * @param name - the image name
+ * @param size - the image size
+ * @returns - a `coco.images` array item.
  */
 export function makeImageItem(
   imageId: number,
   name: string,
   size: { width: number; height: number },
-): CocoDatasetFormat['images'][0] {
+): CocoDatasetFormat['images'][number] {
   return {
     id: imageId,
     license: 1,

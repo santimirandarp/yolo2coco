@@ -3,12 +3,13 @@
  * @param imageId - id of the image, given by the iteration process.
  * @param yoloCategory - category of the annotation.
  * @param annotationId - id of the annotation, given by the iteration process.
- * @returns
+ * Always starts from 1.
+ * @returns - a `coco.annotations` array default item.
  */
 export function defaultAnnotationItem(
   imageId: number,
-  yoloCategory: number,
   annotationId: number,
+  yoloCategory: number,
 ) {
   return {
     id: annotationId,

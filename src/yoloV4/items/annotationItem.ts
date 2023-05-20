@@ -1,6 +1,13 @@
 import { defaultAnnotationItem } from '../../items/defaultAnnotationItem';
 
-export function makeAnnotationEntry(
+/**
+ * Make an annotation entry from a line of the annotation file
+ * @param line - a line from the annotation file
+ * @param imageId - the image id
+ * @param annotationId - the annotation id
+ * @returns - an annotation entry for the coco.annotations array.
+ */
+export function makeAnnotationItem(
   line: string,
   imageId: number,
   annotationId: number,
@@ -10,7 +17,7 @@ export function makeAnnotationEntry(
   const h = y2 - y1;
 
   return {
-    ...defaultAnnotationItem(imageId, yoloCategory, annotationId),
+    ...defaultAnnotationItem(imageId, annotationId, yoloCategory),
     bbox: [x1, y1, w, h],
     area: w * h,
   };

@@ -1,5 +1,5 @@
-import { readdir, open } from 'node:fs/promises';
-import { basename, join } from 'node:path';
+import { opendir, open } from 'node:fs/promises';
+import { join } from 'node:path';
 
 import sizeOf from 'image-size';
 
@@ -18,17 +18,20 @@ export async function processDataDirectory(imgDir: string, classes: string[]) {
     coco.categories.push(makeClassItem(name, id));
   });
 
-  const imgPaths = (await readdir(imgDir)).map((f) => join(imgDir, f));
-  for (const imgPath of imgPaths) {
-    const imageName = basename(imgPath);
-    const { height, width } = sizeOf(imgPath);
+  const imgDirents = await opendir(imgDir);
+  for await (const imgDirent of imgDirents) {
+    const { name: imageName } = imgDirent;
+    // will be removed in the future (node 20 supports `.path`)
+    const imagePath = join(imgDir, imageName);
+
+    const { height, width } = sizeOf(imagePath);
     if (!height || !width) {
-      throw new Error(`Couldn't get image size for ${imgPath}`);
+      throw new Error(`Couldn't get image size for ${imgDirent.name}`);
     }
     const imgField = makeImageItem(imageId, imageName, { height, width });
     coco.images.push(imgField);
 
-    const labelFile = imgPath
+    const labelFile = imagePath
       .replace('/images/', '/labels/')
       .replace(/\.[^/.]+$/, '.txt');
     const annotationLines = (await open(labelFile, 'r')).readLines();

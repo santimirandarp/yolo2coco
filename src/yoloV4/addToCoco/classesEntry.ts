@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path';
 
 import { type CocoDatasetFormat } from '../../coco_default';
 import { makeClassItem } from '../../items/classItem';
-import { pathExistOrThrow } from '../../path_exists';
+import { pathExistOrThrow } from '../../pathExists';
 
 export async function addClasses(
   coco: CocoDatasetFormat,
