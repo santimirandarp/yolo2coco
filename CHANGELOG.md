@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/santimirandarp/yolo2coco/compare/v4.1.0...v4.1.1) (2023-05-21)
+
+
+### Miscellaneous Chores
+
+* release 4.1.1 ([1f15534](https://github.com/santimirandarp/yolo2coco/commit/1f15534129a99be61ca4d69f4b3c920face71aff))
+
 ## [4.1.0](https://github.com/santimirandarp/yolo2coco/compare/v4.0.2...v4.1.0) (2023-05-20)
 
 
