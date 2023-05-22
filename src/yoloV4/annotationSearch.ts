@@ -10,7 +10,7 @@ export async function annotationSearch(
   baseDirectoryPath: string,
   annotationFilePaths: string[] = [],
 ) {
-  const baseDir = await opendir(baseDirectoryPath, { recursive: true });
+  const baseDir = await opendir(baseDirectoryPath);
   for await (const dir of baseDir) {
     if (dir.isFile() && dir.name.endsWith('_annotations.txt')) {
       annotationFilePaths.push(join(baseDirectoryPath, dir.name));
