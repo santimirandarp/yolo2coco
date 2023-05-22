@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.2](https://github.com/santimirandarp/yolo2coco/compare/v4.1.1...v4.1.2) (2023-05-22)
+
+
+### Bug Fixes
+
+* remove recursive from open dir ([64de91a](https://github.com/santimirandarp/yolo2coco/commit/64de91aa4df508bdb73706d64b79585e0bd7a392))
+
 ## [4.1.1](https://github.com/santimirandarp/yolo2coco/compare/v4.1.0...v4.1.1) (2023-05-21)
 
 
