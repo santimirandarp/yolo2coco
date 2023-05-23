@@ -16,17 +16,17 @@
     "lib"
   ],
   "scripts": {
-    "check-types": "tsc --noEmit -p .config/tsconfig.json",
-    "clean": "rimraf lib",
     "eslint": "eslint src --cache -c .config/.eslintrc.json",
     "eslint-fix": "npm run eslint -- --fix",
-    "prepack": "npm run tsc",
     "prettier": "prettier --check src --config .config/.prettierrc.json",
     "prettier-write": "prettier --write src --config .config/.prettierrc.json",
+    "check-types": "tsc --noEmit -p .config/tsconfig.json",
+    "tsc-cjs": "tsc --project .config/tsconfig.cjs.json",
+    "tsc": "npm run clean && npm run tsc-cjs",
+    "clean": "rimraf lib",
     "test": "npm run test-only && npm run eslint && npm run prettier && npm run check-types",
     "test-only": "vitest run --coverage -c .config/vite.config.ts",
-    "tsc": "npm run clean && npm run tsc-cjs",
-    "tsc-cjs": "tsc --project .config/tsconfig.cjs.json"
+    "prepack": "npm run tsc"
   },
   "repository": {
     "type": "git",
