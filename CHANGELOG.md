@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.3](https://github.com/santimirandarp/yolo2coco/compare/v4.1.2...v4.1.3) (2023-05-24)
+
+
+### tsconfig
+
+* error in library folder location ([ad02daa](https://github.com/santimirandarp/yolo2coco/commit/ad02daa50ee5bbd076fe26702c92e6b4eb0c9389))
+
 ## [4.1.2](https://github.com/santimirandarp/yolo2coco/compare/v4.1.1...v4.1.2) (2023-05-22)
 
 
