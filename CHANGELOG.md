@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.4](https://github.com/santimirandarp/yolo2coco/compare/v4.1.3...v4.1.4) (2023-06-04)
+
+
+### Miscellaneous Chores
+
+* many non-breaking updates ([e55eabd](https://github.com/santimirandarp/yolo2coco/commit/e55eabd94466c7344d389904814f3756cf3726c0))
+
 ## [4.1.3](https://github.com/santimirandarp/yolo2coco/compare/v4.1.2...v4.1.3) (2023-05-24)
 
 
