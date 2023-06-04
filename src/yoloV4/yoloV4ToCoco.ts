@@ -1,10 +1,11 @@
-import { basename, dirname } from "node:path";
+import { basename, dirname } from 'node:path';
 
-import { cocoDatasetFormat } from "../coco_default";
-import { CocoDirs } from "../types";
+import { search } from 'simple-recursive-search';
 
-import { addAllEntries } from "./addToCoco/addAllEntries";
-import { search } from "simple-recursive-search";
+import { cocoDatasetFormat } from '../coco_default';
+import { CocoDirs } from '../types';
+
+import { addAllEntries } from './addToCoco/addAllEntries';
 
 /**
  * Converts YoloV4 labels to COCO labels
@@ -15,7 +16,7 @@ import { search } from "simple-recursive-search";
  */
 export async function yoloV4ToCoco(baseDirectoryPath: string, merge = false) {
   const annotationPaths = await search(baseDirectoryPath, {
-    filterFilename: (filename) => filename.endsWith("_annotations.txt"),
+    filterFilename: (filename) => filename.endsWith('_annotations.txt'),
   });
 
   if (!merge) {
@@ -37,7 +38,7 @@ export async function yoloV4ToCoco(baseDirectoryPath: string, merge = false) {
         coco,
         annotationPath,
         annotationId,
-        imageId
+        imageId,
       ));
     }
     return { all: coco };
