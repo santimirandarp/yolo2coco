@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.5](https://github.com/santimirandarp/yolo2coco/compare/v4.1.4...v4.1.5) (2023-08-03)
+
+
+### Bug Fixes
+
+* update dependencies ([13660ba](https://github.com/santimirandarp/yolo2coco/commit/13660baa849750d839587bca43dbfedafe88a709))
+
 ## [4.1.4](https://github.com/santimirandarp/yolo2coco/compare/v4.1.3...v4.1.4) (2023-06-04)
 
 
