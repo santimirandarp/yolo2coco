@@ -24,7 +24,12 @@ yoloV4ToCoco("./path/to/folder").then(r=>console.log(Object.keys(r))
 
 ```
 
-You can use `fs.writeFileSync("out.json", JSON.stringify(resultX))` to write out.
+You can use `fs.writeFileSync("out.json", JSON.stringify(resultX))` to write out
+
+
+## ToDo
+
+* [ ] Use roll up to pack a binary and allow CLI conversion.
 
 -------------------
 
